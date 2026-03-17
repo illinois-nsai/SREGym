@@ -183,3 +183,4 @@ packages = ["sregym", "clients", "provisioner", "scripts"]
 
 [tool.uv.sources]
 geni-lib-xlab = { path = "scripts/geni_lib/mod/geni_lib_xlab-1.0.0.tar.gz" }
+gguf = { git = "https://github.com/ggerganov/llama.cpp.git", subdirectory = "gguf-py" }

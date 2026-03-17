@@ -87,3 +87,11 @@
 "bedrock-claude-sonnet-4.5":
   provider: "litellm"
   model_name: "bedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+
+"qwen-8b":
+  provider: "openai"
+  model_name: "Qwen/Qwen3-8B"
+  api_key: "not-needed"
+  temperature: 0.0
+  top_p: 0.95
+  url: "http://localhost:8000/v1"
