@@ -1,0 +1,104 @@
+2026-03-17 07:29:24 - INFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'... - container_runner.py:build_image:221
+2026-03-17 07:29:28 - INFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully. - container_runner.py:build_image:238
+2026-03-17 07:29:28 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x78a14722f140> - conductor_api.py:run_api:191
+2026-03-17 07:29:28 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-17 07:29:28 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-17 07:29:29 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:103
+2026-03-17 07:29:29 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-17 07:29:29 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'khaos', 'chaos-mesh'} - k8s_proxy.py:start:398
+2026-03-17 07:29:29 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'locust-fetcher', 'load-generator'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-17 07:29:29 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-17 07:29:29 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:106
+2026-03-17 07:29:29 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:389
+2026-03-17 07:29:29 - INFO - all.sregym.conductor - [Session Start] Problem ID: faulty_image_correlated - conductor.py:start_problem:391
+2026-03-17 07:29:29 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: faulty_image_correlated - conductor.py:start_problem:392
+2026-03-17 07:29:29 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:521
+2026-03-17 07:29:29 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:522
+2026-03-17 07:29:29 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:529
+2026-03-17 07:29:32 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:533
+2026-03-17 07:29:32 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:540
+2026-03-17 07:29:32 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:546
+2026-03-17 07:29:32 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:133
+2026-03-17 07:29:32 - INFO - all.sregym.conductor - Skipping app cleanup before deploy because skip_cleanup is enabled - conductor.py:start_problem:408
+2026-03-17 07:29:32 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:413
+2026-03-17 07:29:32 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-17 07:29:32 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:558
+2026-03-17 07:29:32 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:564
+2026-03-17 07:29:34 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:583
+2026-03-17 07:29:36 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:606
+2026-03-17 07:29:36 - WARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment. - prometheus.py:deploy:71
+2026-03-17 07:29:36 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:609
+2026-03-17 07:29:37 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-17 07:29:37 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:612
+2026-03-17 07:29:38 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-17 07:29:38 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:616
+2026-03-17 07:29:38 - WARNING - all.infra.loki - Loki is already running. Skipping redeployment. - loki.py:deploy:87
+2026-03-17 07:29:38 - WARNING - all.infra.loki - Promtail is already running. Skipping redeployment. - loki.py:_deploy_promtail:170
+2026-03-17 07:29:38 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:621
+2026-03-17 07:29:42 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-17 07:29:42 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-17 07:29:42 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:624
+2026-03-17 07:29:42 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:636
+2026-03-17 07:29:42 - INFO - all.application - Deploying Kubernetes configurations in namespace: hotel-reservation - hotel_reservation.py:deploy:78
+2026-03-17 07:29:42 - INFO - all.application - Namespace hotel-reservation already exists. - base.py:create_namespace:78
+2026-03-17 07:29:42 - INFO - all.infra.kubectl - ConfigMap 'mongo-rate-script' updated in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:441
+2026-03-17 07:29:42 - INFO - all.infra.kubectl - ConfigMap 'mongo-geo-script' updated in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:441
+2026-03-17 07:29:42 - INFO - all.infra.kubectl - ConfigMap 'failure-admin-rate' updated in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:441
+2026-03-17 07:29:42 - INFO - all.infra.kubectl - ConfigMap 'failure-admin-geo' updated in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:441
+2026-03-17 07:29:57 - INFO - all.sregym.conductor - [ENV] Deploy application: Hotel Reservation - conductor.py:deploy_app:638
+2026-03-17 07:29:59 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 07:30:00 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 07:30:02 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 07:30:03 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 07:30:03 - INFO - all.infra.workload - Start Workload with Wrk2 - wrk2.py:start:322
+2026-03-17 07:30:03 - INFO - all.infra.workload - Checking for existing ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:72
+2026-03-17 07:30:03 - INFO - all.infra.workload - ConfigMap 'wrk2-payload-script' deleted. - wrk2.py:create_configmap:74
+2026-03-17 07:30:03 - INFO - all.infra.workload - Creating ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:81
+2026-03-17 07:30:04 - INFO - all.infra.workload - ConfigMap 'wrk2-payload-script' created successfully. - wrk2.py:create_configmap:83
+2026-03-17 07:30:04 - INFO - all.infra.workload - Job 'wrk2-job' already exists. Deleting it... - wrk2.py:create_wrk_job:119
+2026-03-17 07:30:39 - INFO - all.infra.workload - Job created: wrk2-job - wrk2.py:create_wrk_job:133
+2026-03-17 07:30:39 - INFO - all.sregym.conductor - [ENV] Start workload - conductor.py:deploy_app:644
+2026-03-17 07:30:39 - INFO - all.sregym.conductor - App deployed. - conductor.py:start_problem:415
+2026-03-17 07:30:49 - INFO - all.sregym.conductor - [ENV] Injected fault - conductor.py:_inject_fault:219
+2026-03-17 07:30:49 - DEBUG - all.sregym.conductor - Advancing to stage 'diagnosis' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-17 07:30:49 - INFO - all.sregym.conductor - [STAGE] Go to stage diagnosis - conductor.py:_advance_to_next_stage:286
+2026-03-17 07:30:49 - INFO - all.sregym.conductor - ✅ Deployment complete. Ready for submission. Current stage is: diagnosis - conductor.py:start_problem:436
+2026-03-17 07:30:49 - INFO - all.sregym.container_runner - Starting containerized agent [stratus-run]: python -m clients.stratus.stratus_agent.driver.driver 2>&1 | tee /logs/driver.lo... - container_runner.py:run_async:195
+2026-03-17 07:30:52 - DEBUG - all.sregym.conductor_api - API returns Problem ID: faulty_image_correlated - conductor_api.py:get_problem:181
+2026-03-17 07:30:52 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.hotel_reservation.HotelReservation object at 0x78a14722e780> - conductor_api.py:get_app:171
+2026-03-17 07:32:05 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit('The root cause of the failure is that the **frontend** service\'s container image (**jackcuii/hotel-reservation:latest**) is missing the required executable binary ("frontend"), causing the container to fail during startup. This likely stems from an incorrect build process or an invalid image tag in the deployment configuration.') - parser.py:parse:28
+2026-03-17 07:32:05 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-17 07:32:05 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-17 07:32:05 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ['The root cause of the failure is that the **frontend** service\'s container image (**jackcuii/hotel-reservation:latest**) is missing the required executable binary ("frontend"), causing the container to fail during startup. This likely stems from an incorrect build process or an invalid image tag in the deployment configuration.'], {} - parser.py:parse:34
+2026-03-17 07:32:05 - INFO - all.sregym.conductor - Evaluating stage 'diagnosis' - conductor.py:_submit_evaluate_and_advance:449 [sol = The root cause of the failure is that the **frontend** service's container image (**jackcuii/hotel-reservation:latest**) is missing the required executable binary ("frontend"), causing the container to fail during startup. This likely stems from an incorrect build process or an invalid image tag in the deployment configuration.]
+2026-03-17 07:32:05 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-17 07:32:06 - INFO - all.sregym.conductor - Start Eval for Diagnosis - conductor.py:_evaluate_diagnosis:235 [sol = The root cause of the failure is that the **frontend** service's container image (**jackcuii/hotel-reservation:latest**) is missing the required executable binary ("frontend"), causing the container to fail during startup. This likely stems from an incorrect build process or an invalid image tag in the deployment configuration.]
+2026-03-17 07:32:11 - INFO - all.sregym.conductor - [EVAL] Diagnosis Failed
+ TTL: 82.58620691299438 - conductor.py:_evaluate_diagnosis:239
+2026-03-17 07:32:11 - DEBUG - all.sregym.conductor - Advancing to stage 'mitigation' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-17 07:32:11 - INFO - all.sregym.conductor - [STAGE] Go to stage mitigation - conductor.py:_advance_to_next_stage:286
+2026-03-17 07:32:11 - INFO - all.sregym.conductor - Restarting noise manager for next stage... - conductor.py:_submit_evaluate_and_advance:470
+2026-03-17 07:32:14 - DEBUG - all.sregym.conductor_api - API returns Current stage: mitigation - conductor_api.py:get_status:161
+2026-03-17 07:32:14 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.hotel_reservation.HotelReservation object at 0x78a14722e780> - conductor_api.py:get_app:171
+2026-03-17 07:32:28 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit("The root cause of the failure is that the frontend service's container image (jackcuii/hotel-reservation:latest) is missing the required executable binary 'frontend', causing the container to fail during startup. This is due to an incorrect build process or invalid image tag in the deployment configuration. The deployment specifies the command ['frontend'], but the image does not contain this executable. To resolve this, the container image must be rebuilt to include the 'frontend' binary, or the correct image tag must be used in the deployment configuration.") - parser.py:parse:28
+2026-03-17 07:32:28 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-17 07:32:28 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-17 07:32:28 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ["The root cause of the failure is that the frontend service's container image (jackcuii/hotel-reservation:latest) is missing the required executable binary 'frontend', causing the container to fail during startup. This is due to an incorrect build process or invalid image tag in the deployment configuration. The deployment specifies the command ['frontend'], but the image does not contain this executable. To resolve this, the container image must be rebuilt to include the 'frontend' binary, or the correct image tag must be used in the deployment configuration."], {} - parser.py:parse:34
+2026-03-17 07:32:28 - INFO - all.sregym.conductor - Evaluating stage 'mitigation' - conductor.py:_submit_evaluate_and_advance:449 [sol = The root cause of the failure is that the frontend service's container image (jackcuii/hotel-reservation:latest) is missing the required executable binary 'frontend', causing the container to fail during startup. This is due to an incorrect build process or invalid image tag in the deployment configuration. The deployment specifies the command ['frontend'], but the image does not contain this executable. To resolve this, the container image must be rebuilt to include the 'frontend' binary, or the correct image tag must be used in the deployment configuration.]
+2026-03-17 07:32:28 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-17 07:32:28 - DEBUG - all.infra.k8s_proxy - Proxy: "GET /api/v1/namespaces/hotel-reservation/services/frontend HTTP/1.1" 200 - - k8s_proxy.py:log_message:193
+2026-03-17 07:32:28 - INFO - all.sregym.conductor - Start Eval for Mitigation - conductor.py:_evaluate_mitigation:250 [sol = The root cause of the failure is that the frontend service's container image (jackcuii/hotel-reservation:latest) is missing the required executable binary 'frontend', causing the container to fail during startup. This is due to an incorrect build process or invalid image tag in the deployment configuration. The deployment specifies the command ['frontend'], but the image does not contain this executable. To resolve this, the container image must be rebuilt to include the 'frontend' binary, or the correct image tag must be used in the deployment configuration.]
+2026-03-17 07:32:29 - INFO - all.sregym.conductor - [EVAL] Mitigation Failed
+ TTM: 100.00765061378479 - conductor.py:_evaluate_mitigation:254
+2026-03-17 07:32:29 - INFO - all.sregym.conductor - [STAGE] Done, initiating teardown - conductor.py:_finish_problem:348
+2026-03-17 07:32:29 - INFO - all.sregym.conductor - [CLEANUP] Starting cleanup (fault recovery, undeploy, reconcile) - conductor.py:_cleanup_sync:304
+2026-03-17 07:32:29 - INFO - all.sregym.conductor - [STAGE] Teardown initiated, cleanup running in background - conductor.py:_finish_problem:357
+2026-03-17 07:32:29 - INFO - all.sregym.conductor - [CLEANUP] NoiseManager stopped - conductor.py:_cleanup_sync:310
+2026-03-17 07:32:29 - INFO - all.sregym.conductor - [CLEANUP] Recovering fault... - conductor.py:_cleanup_sync:316
+2026-03-17 07:32:30 - INFO - all.sregym.conductor - [CLEANUP] Fault recovered - conductor.py:_cleanup_sync:318
+2026-03-17 07:32:30 - INFO - all.sregym.conductor - [CLEANUP] Skipping app undeploy because skip_cleanup is enabled - conductor.py:_cleanup_sync:322
+2026-03-17 07:32:30 - INFO - all.sregym.conductor - [CLEANUP] Reconciling cluster state to baseline... - conductor.py:_cleanup_sync:330
+2026-03-17 07:32:30 - INFO - all.infra.cluster_state - Reconciling cluster to baseline state... - cluster_state.py:reconcile_to_baseline:168
+2026-03-17 07:32:30 - INFO - all.infra.cluster_state - Deleting unexpected namespace: openebs - cluster_state.py:reconcile_to_baseline:187
+2026-03-17 07:32:50 - INFO - all.infra.kubectl - Namespace 'openebs' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-17 07:32:50 - INFO - all.infra.cluster_state - Deleting unexpected namespace: hotel-reservation - cluster_state.py:reconcile_to_baseline:187

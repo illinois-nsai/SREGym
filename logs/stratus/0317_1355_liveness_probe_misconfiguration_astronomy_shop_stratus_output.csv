@@ -1,0 +1,3 @@
+agent_name,input_tokens,output_tokens,total_tokens,time,steps,num_retry_attempts,rollback_stack,oracle_results
+diagnosis_agent,109088,9264,118352,121.7553840620094,8,N/A,N/A,N/A
+mitigation_agent_validate,81601,8087,89688,104.13020199199673,7,0,"N/A, mitigation agent","[True, []]"

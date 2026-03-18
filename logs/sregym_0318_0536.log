@@ -1,0 +1,67 @@
+2026-03-18 05:36:52 - INFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'... - container_runner.py:build_image:221
+2026-03-18 05:36:56 - INFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully. - container_runner.py:build_image:238
+2026-03-18 05:36:56 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x77d49e3632c0> - conductor_api.py:run_api:191
+2026-03-18 05:36:56 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-18 05:36:56 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-18 05:36:57 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:103
+2026-03-18 05:36:57 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-18 05:36:57 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'} - k8s_proxy.py:start:398
+2026-03-18 05:36:57 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'load-generator', 'locust-fetcher'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-18 05:36:57 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-18 05:36:57 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:106
+2026-03-18 05:36:58 - INFO - all.application - Namespace fleetcast already exists. - base.py:create_namespace:78
+2026-03-18 05:36:58 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:389
+2026-03-18 05:36:58 - INFO - all.sregym.conductor - [Session Start] Problem ID: operator_security_context_fault - conductor.py:start_problem:391
+2026-03-18 05:36:58 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: operator_security_context_fault - conductor.py:start_problem:392
+2026-03-18 05:36:58 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:521
+2026-03-18 05:36:58 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:522
+2026-03-18 05:36:58 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:529
+2026-03-18 05:37:01 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:533
+2026-03-18 05:37:01 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:540
+2026-03-18 05:37:01 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:546
+2026-03-18 05:37:01 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:133
+2026-03-18 05:37:01 - INFO - all.sregym.conductor - Undeploying app leftovers... - conductor.py:start_problem:410
+2026-03-18 05:37:01 - INFO - all.infra.helm - Helm Uninstall: fleetcast in namespace fleetcast - helm.py:uninstall:85
+2026-03-18 05:37:01 - WARNING - all.infra.helm - Release fleetcast does not exist. Skipping uninstall. - helm.py:uninstall:88
+2026-03-18 05:37:08 - INFO - all.infra.kubectl - Namespace 'fleetcast' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 05:37:08 - INFO - all.infra.workload - Stop Workload with Locust - locust.py:stop:190
+2026-03-18 05:37:08 - INFO - all.infra.workload - AstronomyShop's built-in load generator is automatically managed. - locust.py:stop:191
+2026-03-18 05:37:08 - INFO - all.infra.workload - Removing locust-fetcher pod if it exists... - locust.py:stop:192
+2026-03-18 05:37:08 - DEBUG - all.infra.workload - Workload stopped - locust.py:stop:194
+2026-03-18 05:37:08 - INFO - all.sregym.conductor - App leftovers undeployed. - conductor.py:start_problem:412
+2026-03-18 05:37:08 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:413
+2026-03-18 05:37:08 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-18 05:37:08 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:558
+2026-03-18 05:37:08 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:564
+2026-03-18 05:37:18 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:583
+2026-03-18 05:37:20 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:606
+2026-03-18 05:37:20 - WARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment. - prometheus.py:deploy:71
+2026-03-18 05:37:20 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:609
+2026-03-18 05:37:21 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-18 05:37:21 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:612
+2026-03-18 05:37:22 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-18 05:37:22 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:616
+2026-03-18 05:37:22 - WARNING - all.infra.loki - Loki is already running. Skipping redeployment. - loki.py:deploy:87
+2026-03-18 05:37:23 - WARNING - all.infra.loki - Promtail is already running. Skipping redeployment. - loki.py:_deploy_promtail:170
+2026-03-18 05:37:23 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:621
+2026-03-18 05:37:23 - DEBUG - all.sregym.mcp_server - Port 9954 is already in use. Attempt 1 of 3. Retrying in 3 seconds... - mcp_server.py:start_port_forward:45
+2026-03-18 05:37:29 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-18 05:37:29 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-18 05:37:29 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:624
+2026-03-18 05:37:29 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:636
+2026-03-18 05:37:29 - INFO - all.infra.kubectl - Namespace 'fleetcast' not found. Creating namespace. - kubectl.py:create_namespace_if_not_exist:503
+2026-03-18 05:37:29 - INFO - all.infra.kubectl - Namespace 'fleetcast' created successfully. - kubectl.py:create_namespace_if_not_exist:506
+2026-03-18 05:37:37 - INFO - all.infra.helm - Helm Repo Add: pingcap with url https://charts.pingcap.org - helm.py:add_repo:223
+2026-03-18 05:37:37 - INFO - all.infra.helm - Helm repo pingcap added successfully: "pingcap" already exists with the same configuration, skipping - helm.py:add_repo:236
+2026-03-18 05:37:37 - INFO - all.infra.helm - Helm Repo Update with retry logic - helm.py:repo_update:270
+2026-03-18 05:37:39 - INFO - all.infra.helm - Helm repo update successful on attempt 1 - helm.py:repo_update:278
+2026-03-18 05:37:39 - DEBUG - all.infra.helm - Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "ingress-nginx" chart repository
+...Successfully got an update from the "chaos-mesh" chart repository
+...Successfully got an update from the "fleetcast" chart repository
+...Successfully got an update from the "grafana" chart repository
+...Successfully got an update from the "pingcap" chart repository
+Update Complete. ⎈Happy Helming!⎈
+ - helm.py:repo_update:279
+2026-03-18 05:48:06 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-18 05:48:06 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

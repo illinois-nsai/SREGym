@@ -1,0 +1,94 @@
+2026-03-17 16:59:30 - INFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'... - container_runner.py:build_image:221
+2026-03-17 16:59:34 - INFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully. - container_runner.py:build_image:238
+2026-03-17 16:59:34 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x777b3ef53980> - conductor_api.py:run_api:191
+2026-03-17 16:59:34 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-17 16:59:34 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-17 16:59:35 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:103
+2026-03-17 16:59:35 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-17 16:59:35 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'} - k8s_proxy.py:start:398
+2026-03-17 16:59:35 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'locust-fetcher', 'load-generator'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-17 16:59:35 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-17 16:59:35 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:106
+2026-03-17 16:59:35 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:389
+2026-03-17 16:59:35 - INFO - all.sregym.conductor - [Session Start] Problem ID: persistent_volume_affinity_violation - conductor.py:start_problem:391
+2026-03-17 16:59:35 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: persistent_volume_affinity_violation - conductor.py:start_problem:392
+2026-03-17 16:59:35 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:521
+2026-03-17 16:59:35 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:522
+2026-03-17 16:59:35 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:529
+2026-03-17 16:59:38 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:533
+2026-03-17 16:59:39 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:540
+2026-03-17 16:59:39 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:546
+2026-03-17 16:59:39 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:133
+2026-03-17 16:59:39 - INFO - all.sregym.conductor - Undeploying app leftovers... - conductor.py:start_problem:410
+2026-03-17 16:59:39 - INFO - all.infra.helm - Helm Uninstall: social-network in namespace social-network - helm.py:uninstall:85
+2026-03-17 16:59:42 - DEBUG - all.infra.helm - release "social-network" uninstalled - helm.py:uninstall:108
+2026-03-17 17:00:30 - INFO - all.infra.kubectl - Namespace 'social-network' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-17 17:00:30 - INFO - all.sregym.conductor - App leftovers undeployed. - conductor.py:start_problem:412
+2026-03-17 17:00:30 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:413
+2026-03-17 17:00:30 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-17 17:00:30 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:558
+2026-03-17 17:00:30 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:564
+2026-03-17 17:00:32 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:583
+2026-03-17 17:00:34 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:606
+2026-03-17 17:00:34 - WARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment. - prometheus.py:deploy:71
+2026-03-17 17:00:34 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:609
+2026-03-17 17:00:34 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-17 17:00:34 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:612
+2026-03-17 17:00:35 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-17 17:00:35 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:616
+2026-03-17 17:00:36 - WARNING - all.infra.loki - Loki is already running. Skipping redeployment. - loki.py:deploy:87
+2026-03-17 17:00:36 - WARNING - all.infra.loki - Promtail is already running. Skipping redeployment. - loki.py:_deploy_promtail:170
+2026-03-17 17:00:36 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:621
+2026-03-17 17:00:37 - DEBUG - all.sregym.mcp_server - Port 9954 is already in use. Attempt 1 of 3. Retrying in 3 seconds... - mcp_server.py:start_port_forward:45
+2026-03-17 17:00:43 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-17 17:00:43 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-17 17:00:43 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:624
+2026-03-17 17:00:43 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:636
+2026-03-17 17:00:43 - INFO - all.application - Namespace social-network not found. Creating namespace. - base.py:create_namespace:73
+2026-03-17 17:00:43 - INFO - all.application - Namespace social-network created successfully: namespace/social-network created
+ - base.py:create_namespace:76
+2026-03-17 17:00:43 - DEBUG - all.sregym.social_network - TLS secret created: secret/mongodb-tls created - social_network.py:create_tls_secret:55
+2026-03-17 17:00:43 - INFO - all.infra.helm - Helm Install: social-network in namespace social-network - helm.py:install:35
+2026-03-17 17:01:19 - DEBUG - all.infra.helm - NAME: social-network
+LAST DEPLOYED: Tue Mar 17 17:01:13 2026
+NAMESPACE: social-network
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None - helm.py:install:72
+2026-03-17 17:02:23 - INFO - all.sregym.conductor - [ENV] Deploy application: Social Network - conductor.py:deploy_app:638
+2026-03-17 17:02:23 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'social-network' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 17:02:24 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'social-network' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 17:02:24 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'social-network' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 17:02:24 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'social-network' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 17:02:24 - INFO - all.infra.workload - Start Workload with Wrk2 - wrk2.py:start:322
+2026-03-17 17:02:24 - INFO - all.infra.workload - Checking for existing ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:72
+2026-03-17 17:02:24 - INFO - all.infra.workload - Creating ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:81
+2026-03-17 17:02:25 - INFO - all.infra.workload - ConfigMap 'wrk2-payload-script' created successfully. - wrk2.py:create_configmap:83
+2026-03-17 17:02:25 - INFO - all.infra.workload - Job created: wrk2-job - wrk2.py:create_wrk_job:133
+2026-03-17 17:02:25 - INFO - all.sregym.conductor - [ENV] Start workload - conductor.py:deploy_app:644
+2026-03-17 17:02:25 - INFO - all.sregym.conductor - App deployed. - conductor.py:start_problem:415
+2026-03-17 17:02:32 - INFO - all.sregym.conductor - [ENV] Injected fault - conductor.py:_inject_fault:219
+2026-03-17 17:02:32 - DEBUG - all.sregym.conductor - Advancing to stage 'diagnosis' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-17 17:02:32 - INFO - all.sregym.conductor - [STAGE] Go to stage diagnosis - conductor.py:_advance_to_next_stage:286
+2026-03-17 17:02:32 - INFO - all.sregym.conductor - ✅ Deployment complete. Ready for submission. Current stage is: diagnosis - conductor.py:start_problem:436
+2026-03-17 17:02:32 - INFO - all.sregym.container_runner - Starting containerized agent [stratus-run]: python -m clients.stratus.stratus_agent.driver.driver 2>&1 | tee /logs/driver.lo... - container_runner.py:run_async:195
+2026-03-17 17:02:36 - DEBUG - all.sregym.conductor_api - API returns Problem ID: persistent_volume_affinity_violation - conductor_api.py:get_problem:181
+2026-03-17 17:02:36 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.social_network.SocialNetwork object at 0x777b3f1ad040> - conductor_api.py:get_app:171
+2026-03-17 17:04:31 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit("The root cause of the failure is a **node affinity conflict** between the PersistentVolume (PV) `temp-pv` and the user-service pod. The PV is bound to node `node1.htliang2-agent.insai-pg0.apt.emulab.net` (via its `nodeAffinity` configuration), but the user-service pod's node selector explicitly targets `node2.htliang2-agent.insai-pg0.apt.emulab.net`. This mismatch prevents the pod from being scheduled, as the PV's node affinity restricts the pod to node1, while the pod's node selector excludes it. To resolve this, either the PV's node affinity must be updated to include node2, or the pod's node selector must be adjusted to node1.") - parser.py:parse:28
+2026-03-17 17:04:31 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-17 17:04:31 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-17 17:04:31 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ["The root cause of the failure is a **node affinity conflict** between the PersistentVolume (PV) `temp-pv` and the user-service pod. The PV is bound to node `node1.htliang2-agent.insai-pg0.apt.emulab.net` (via its `nodeAffinity` configuration), but the user-service pod's node selector explicitly targets `node2.htliang2-agent.insai-pg0.apt.emulab.net`. This mismatch prevents the pod from being scheduled, as the PV's node affinity restricts the pod to node1, while the pod's node selector excludes it. To resolve this, either the PV's node affinity must be updated to include node2, or the pod's node selector must be adjusted to node1."], {} - parser.py:parse:34
+2026-03-17 17:04:31 - INFO - all.sregym.conductor - Evaluating stage 'diagnosis' - conductor.py:_submit_evaluate_and_advance:449 [sol = The root cause of the failure is a **node affinity conflict** between the PersistentVolume (PV) `temp-pv` and the user-service pod. The PV is bound to node `node1.htliang2-agent.insai-pg0.apt.emulab.net` (via its `nodeAffinity` configuration), but the user-service pod's node selector explicitly targets `node2.htliang2-agent.insai-pg0.apt.emulab.net`. This mismatch prevents the pod from being scheduled, as the PV's node affinity restricts the pod to node1, while the pod's node selector excludes it. To resolve this, either the PV's node affinity must be updated to include node2, or the pod's node selector must be adjusted to node1.]
+2026-03-17 17:04:31 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-17 17:04:31 - INFO - all.sregym.conductor - Start Eval for Diagnosis - conductor.py:_evaluate_diagnosis:235 [sol = The root cause of the failure is a **node affinity conflict** between the PersistentVolume (PV) `temp-pv` and the user-service pod. The PV is bound to node `node1.htliang2-agent.insai-pg0.apt.emulab.net` (via its `nodeAffinity` configuration), but the user-service pod's node selector explicitly targets `node2.htliang2-agent.insai-pg0.apt.emulab.net`. This mismatch prevents the pod from being scheduled, as the PV's node affinity restricts the pod to node1, while the pod's node selector excludes it. To resolve this, either the PV's node affinity must be updated to include node2, or the pod's node selector must be adjusted to node1.]
+2026-03-17 17:04:39 - DEBUG - all.sregym.conductor_api - API returns Current stage: diagnosis - conductor_api.py:get_status:161
+2026-03-17 17:04:39 - INFO - all.sregym.conductor - [EVAL] Diagnosis Failed
+ TTL: 126.83300375938416 - conductor.py:_evaluate_diagnosis:239
+2026-03-17 17:04:39 - DEBUG - all.sregym.conductor - Advancing to stage 'mitigation' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-17 17:04:39 - INFO - all.sregym.conductor - [STAGE] Go to stage mitigation - conductor.py:_advance_to_next_stage:286
+2026-03-17 17:04:39 - INFO - all.sregym.conductor - Restarting noise manager for next stage... - conductor.py:_submit_evaluate_and_advance:470
+2026-03-17 17:06:40 - INFO - all.sregym.conductor - Stopping Kubernetes API filtering proxy... - conductor.py:stop_k8s_proxy:110
+2026-03-17 17:06:41 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy stopped - k8s_proxy.py:stop:407
+2026-03-17 17:06:41 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-17 17:06:41 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

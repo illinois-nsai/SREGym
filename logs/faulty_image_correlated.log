@@ -1,0 +1,62 @@
+Traceback (most recent call last):
+  File "/home/htl/SREGym/main.py", line 14, in <module>
+    from llm_backend.init_backend import load_model_config
+  File "/home/htl/SREGym/llm_backend/init_backend.py", line 7, in <module>
+    from llm_backend.get_llm_backend import LiteLLMBackend
+  File "/home/htl/SREGym/llm_backend/get_llm_backend.py", line 10, in <module>
+    import litellm
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/litellm/__init__.py", line 1117, in <module>
+    from .llms.anthropic.common_utils import AnthropicModelInfo
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/__init__.py", line 4, in <module>
+    from .chat.transformation import AnthropicConfig
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/__init__.py", line 1, in <module>
+    from .handler import AnthropicChatCompletion, ModelResponseIterator
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 61, in <module>
+    from litellm.anthropic_beta_headers_manager import (
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/litellm/anthropic_beta_headers_manager.py", line 32, in <module>
+    from litellm.litellm_core_utils.litellm_logging import verbose_logger
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/litellm_logging.py", line 140, in <module>
+    from ..integrations.gcs_bucket.gcs_bucket import GCSBucketLogger
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/litellm/integrations/gcs_bucket/gcs_bucket.py", line 15, in <module>
+    from litellm.proxy._types import CommonProxyErrors
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/litellm/proxy/_types.py", line 975, in <module>
+    class UpdateKeyRequest(KeyRequestBase):
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_model_construction.py", line 237, in __new__
+    complete_model_class(
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_model_construction.py", line 597, in complete_model_class
+    schema = gen_schema.generate_schema(cls)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py", line 706, in generate_schema
+    schema = self._generate_schema_inner(obj)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py", line 999, in _generate_schema_inner
+    return self._model_schema(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py", line 832, in _model_schema
+    {k: self._generate_md_field_schema(k, v, decorators) for k, v in fields.items()},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py", line 1201, in _generate_md_field_schema
+    common_field = self._common_field_schema(name, field_info, decorators)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py", line 1367, in _common_field_schema
+    schema = self._apply_annotations(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py", line 2279, in _apply_annotations
+    schema = get_inner_schema(source_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_schema_generation_shared.py", line 83, in __call__
+    schema = self._handler(source_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py", line 2261, in inner_handler
+    schema = self._generate_schema_inner(obj)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py", line 1004, in _generate_schema_inner
+    return self.match_type(obj)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py", line 1063, in match_type
+    elif obj in SEQUENCE_TYPES:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/typing.py", line 1565, in __eq__
+    def __eq__(self, other):
+
+KeyboardInterrupt

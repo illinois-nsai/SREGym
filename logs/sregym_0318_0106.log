@@ -1,0 +1,131 @@
+2026-03-18 01:06:06 - INFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'... - container_runner.py:build_image:221
+2026-03-18 01:06:10 - INFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully. - container_runner.py:build_image:238
+2026-03-18 01:06:10 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x7278ee23bec0> - conductor_api.py:run_api:191
+2026-03-18 01:06:10 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-18 01:06:10 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-18 01:06:11 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:103
+2026-03-18 01:06:11 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-18 01:06:11 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'} - k8s_proxy.py:start:398
+2026-03-18 01:06:11 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'locust-fetcher', 'load-generator'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-18 01:06:11 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-18 01:06:11 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:106
+2026-03-18 01:06:12 - INFO - all.application - Namespace astronomy-shop already exists. - base.py:create_namespace:78
+2026-03-18 01:06:12 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:389
+2026-03-18 01:06:12 - INFO - all.sregym.conductor - [Session Start] Problem ID: astronomy_shop_ad_service_image_slow_load - conductor.py:start_problem:391
+2026-03-18 01:06:12 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: astronomy_shop_ad_service_image_slow_load - conductor.py:start_problem:392
+2026-03-18 01:06:12 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:521
+2026-03-18 01:06:12 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:522
+2026-03-18 01:06:12 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:529
+2026-03-18 01:06:15 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:533
+2026-03-18 01:06:15 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:540
+2026-03-18 01:06:15 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:546
+2026-03-18 01:06:15 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:133
+2026-03-18 01:06:15 - INFO - all.sregym.conductor - ⏩ Mitigation oracle is not attached. Skipping mitigation. - conductor.py:_build_stage_sequence:208
+2026-03-18 01:06:15 - INFO - all.sregym.conductor - Undeploying app leftovers... - conductor.py:start_problem:410
+2026-03-18 01:06:15 - INFO - all.infra.helm - Helm Uninstall: astronomy-shop in namespace astronomy-shop - helm.py:uninstall:85
+2026-03-18 01:06:23 - DEBUG - all.infra.helm - release "astronomy-shop" uninstalled - helm.py:uninstall:108
+2026-03-18 01:07:07 - INFO - all.infra.kubectl - Namespace 'astronomy-shop' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 01:07:07 - INFO - all.sregym.conductor - App leftovers undeployed. - conductor.py:start_problem:412
+2026-03-18 01:07:07 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:413
+2026-03-18 01:07:07 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-18 01:07:07 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:558
+2026-03-18 01:07:07 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:564
+2026-03-18 01:07:13 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:583
+2026-03-18 01:07:15 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:606
+2026-03-18 01:07:15 - WARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment. - prometheus.py:deploy:71
+2026-03-18 01:07:15 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:609
+2026-03-18 01:07:16 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-18 01:07:16 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:612
+2026-03-18 01:07:17 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-18 01:07:17 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:616
+2026-03-18 01:07:17 - WARNING - all.infra.loki - Loki is already running. Skipping redeployment. - loki.py:deploy:87
+2026-03-18 01:07:17 - WARNING - all.infra.loki - Promtail is already running. Skipping redeployment. - loki.py:_deploy_promtail:170
+2026-03-18 01:07:17 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:621
+2026-03-18 01:07:18 - DEBUG - all.sregym.mcp_server - Port 9954 is already in use. Attempt 1 of 3. Retrying in 3 seconds... - mcp_server.py:start_port_forward:45
+2026-03-18 01:07:24 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-18 01:07:24 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-18 01:07:24 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:624
+2026-03-18 01:07:24 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:636
+2026-03-18 01:07:24 - INFO - all.infra.kubectl - Namespace 'astronomy-shop' not found. Creating namespace. - kubectl.py:create_namespace_if_not_exist:503
+2026-03-18 01:07:24 - INFO - all.infra.kubectl - Namespace 'astronomy-shop' created successfully. - kubectl.py:create_namespace_if_not_exist:506
+2026-03-18 01:07:24 - INFO - all.infra.helm - Helm Install: astronomy-shop in namespace astronomy-shop - helm.py:install:35
+2026-03-18 01:07:41 - DEBUG - all.infra.helm - NAME: astronomy-shop
+LAST DEPLOYED: Wed Mar 18 01:07:34 2026
+NAMESPACE: astronomy-shop
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+=======================================================================================
+
+
+ ██████╗ ████████╗███████╗██╗         ██████╗ ███████╗███╗   ███╗ ██████╗
+██╔═══██╗╚══██╔══╝██╔════╝██║         ██╔══██╗██╔════╝████╗ ████║██╔═══██╗
+██║   ██║   ██║   █████╗  ██║         ██║  ██║█████╗  ██╔████╔██║██║   ██║
+██║   ██║   ██║   ██╔══╝  ██║         ██║  ██║██╔══╝  ██║╚██╔╝██║██║   ██║
+╚██████╔╝   ██║   ███████╗███████╗    ██████╔╝███████╗██║ ╚═╝ ██║╚██████╔╝
+ ╚═════╝    ╚═╝   ╚══════╝╚══════╝    ╚═════╝ ╚══════╝╚═╝     ╚═╝ ╚═════╝
+
+
+- All services are available via the Frontend proxy: http://localhost:8080
+  by running these commands:
+     kubectl --namespace astronomy-shop port-forward svc/frontend-proxy 8080:8080
+
+  The following services are available at these paths after the frontend-proxy service is exposed with port forwarding:
+  Webstore             http://localhost:8080/
+  Jaeger UI            http://localhost:8080/jaeger/ui/
+  Grafana              http://localhost:8080/grafana/
+  Load Generator UI    http://localhost:8080/loadgen/
+  Feature Flags UI     http://localhost:8080/feature/ - helm.py:install:72
+2026-03-18 01:09:36 - INFO - all.sregym.conductor - [ENV] Deploy application: OpenTelemetry Demo Astronomy Shop - conductor.py:deploy_app:638
+2026-03-18 01:09:36 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'astronomy-shop' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 01:09:37 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'astronomy-shop' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 01:09:37 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'astronomy-shop' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 01:09:37 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'astronomy-shop' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 01:09:38 - INFO - all.sregym.jaeger - Restarted otel-collector-agent DaemonSet in namespace 'astronomy-shop' - jaeger.py:create_external_name_service:92
+2026-03-18 01:09:38 - INFO - all.infra.workload - Start Workload with Locust - locust.py:start:183
+2026-03-18 01:09:38 - INFO - all.infra.workload - AstronomyShop has a built-in load generator. - locust.py:start:184
+2026-03-18 01:09:38 - INFO - all.infra.workload - Creating locust-fetcher pod... - locust.py:start:185
+2026-03-18 01:09:43 - DEBUG - all.infra.workload - Workload started - locust.py:start:187
+2026-03-18 01:09:43 - INFO - all.sregym.conductor - [ENV] Start workload - conductor.py:deploy_app:644
+2026-03-18 01:09:43 - INFO - all.sregym.conductor - App deployed. - conductor.py:start_problem:415
+2026-03-18 01:09:43 - INFO - all.infra.kubectl - ConfigMap 'flagd-config' updated in namespace 'astronomy-shop' - kubectl.py:create_or_update_configmap:441
+2026-03-18 01:09:44 - INFO - all.sregym.conductor - [ENV] Injected fault - conductor.py:_inject_fault:219
+2026-03-18 01:09:44 - DEBUG - all.sregym.conductor - Advancing to stage 'diagnosis' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-18 01:09:44 - INFO - all.sregym.conductor - [STAGE] Go to stage diagnosis - conductor.py:_advance_to_next_stage:286
+2026-03-18 01:09:44 - INFO - all.sregym.conductor - ✅ Deployment complete. Ready for submission. Current stage is: diagnosis - conductor.py:start_problem:436
+2026-03-18 01:09:44 - INFO - all.sregym.container_runner - Starting containerized agent [stratus-run]: python -m clients.stratus.stratus_agent.driver.driver 2>&1 | tee /logs/driver.lo... - container_runner.py:run_async:195
+2026-03-18 01:09:47 - DEBUG - all.sregym.conductor_api - API returns Problem ID: astronomy_shop_ad_service_image_slow_load - conductor_api.py:get_problem:181
+2026-03-18 01:09:47 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.astronomy_shop.AstronomyShop object at 0x7278ee490dd0> - conductor_api.py:get_app:171
+2026-03-18 01:11:22 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit("The root cause of the failure in the `flagd` service is that the container's memory limit was set to 75Mi, but the pod consumed 99.86Mi of memory, exceeding the allocated limit. This triggered the Kubernetes OOM Killer to terminate the pod, resulting in the Error state. The solution requires increasing the memory limit in the deployment specification to accommodate the application's actual memory usage.") - parser.py:parse:28
+2026-03-18 01:11:22 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 01:11:22 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 01:11:22 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ["The root cause of the failure in the `flagd` service is that the container's memory limit was set to 75Mi, but the pod consumed 99.86Mi of memory, exceeding the allocated limit. This triggered the Kubernetes OOM Killer to terminate the pod, resulting in the Error state. The solution requires increasing the memory limit in the deployment specification to accommodate the application's actual memory usage."], {} - parser.py:parse:34
+2026-03-18 01:11:22 - INFO - all.sregym.conductor - Evaluating stage 'diagnosis' - conductor.py:_submit_evaluate_and_advance:449 [sol = The root cause of the failure in the `flagd` service is that the container's memory limit was set to 75Mi, but the pod consumed 99.86Mi of memory, exceeding the allocated limit. This triggered the Kubernetes OOM Killer to terminate the pod, resulting in the Error state. The solution requires increasing the memory limit in the deployment specification to accommodate the application's actual memory usage.]
+2026-03-18 01:11:22 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-18 01:11:22 - INFO - all.sregym.conductor - Start Eval for Diagnosis - conductor.py:_evaluate_diagnosis:235 [sol = The root cause of the failure in the `flagd` service is that the container's memory limit was set to 75Mi, but the pod consumed 99.86Mi of memory, exceeding the allocated limit. This triggered the Kubernetes OOM Killer to terminate the pod, resulting in the Error state. The solution requires increasing the memory limit in the deployment specification to accommodate the application's actual memory usage.]
+2026-03-18 01:11:28 - INFO - all.sregym.conductor - [EVAL] Diagnosis Failed
+ TTL: 104.8436369895935 - conductor.py:_evaluate_diagnosis:239
+2026-03-18 01:11:28 - INFO - all.sregym.conductor - [STAGE] Done, initiating teardown - conductor.py:_finish_problem:348
+2026-03-18 01:11:28 - INFO - all.sregym.conductor - [CLEANUP] Starting cleanup (fault recovery, undeploy, reconcile) - conductor.py:_cleanup_sync:304
+2026-03-18 01:11:28 - INFO - all.sregym.conductor - [STAGE] Teardown initiated, cleanup running in background - conductor.py:_finish_problem:357
+2026-03-18 01:11:28 - INFO - all.sregym.conductor - [CLEANUP] NoiseManager stopped - conductor.py:_cleanup_sync:310
+2026-03-18 01:11:28 - INFO - all.sregym.conductor - [CLEANUP] Recovering fault... - conductor.py:_cleanup_sync:316
+2026-03-18 01:11:29 - INFO - all.infra.kubectl - ConfigMap 'flagd-config' updated in namespace 'astronomy-shop' - kubectl.py:create_or_update_configmap:441
+2026-03-18 01:11:29 - INFO - all.sregym.conductor - [CLEANUP] Fault recovered - conductor.py:_cleanup_sync:318
+2026-03-18 01:11:29 - INFO - all.sregym.conductor - [CLEANUP] Undeploying app... - conductor.py:_cleanup_sync:324
+2026-03-18 01:11:29 - INFO - all.infra.helm - Helm Uninstall: astronomy-shop in namespace astronomy-shop - helm.py:uninstall:85
+2026-03-18 01:11:31 - DEBUG - all.sregym.conductor_api - API returns Current stage: tearing_down - conductor_api.py:get_status:161
+2026-03-18 01:11:41 - DEBUG - all.infra.helm - release "astronomy-shop" uninstalled - helm.py:uninstall:108
+2026-03-18 01:13:00 - INFO - all.infra.kubectl - Namespace 'astronomy-shop' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 01:13:00 - INFO - all.sregym.conductor - [CLEANUP] App undeployed - conductor.py:_cleanup_sync:326
+2026-03-18 01:13:00 - INFO - all.sregym.conductor - [CLEANUP] Reconciling cluster state to baseline... - conductor.py:_cleanup_sync:330
+2026-03-18 01:13:00 - INFO - all.infra.cluster_state - Reconciling cluster to baseline state... - cluster_state.py:reconcile_to_baseline:168
+2026-03-18 01:13:00 - INFO - all.infra.cluster_state - Deleting unexpected namespace: sregym - cluster_state.py:reconcile_to_baseline:187
+2026-03-18 01:13:12 - INFO - all.infra.kubectl - Namespace 'sregym' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 01:13:12 - INFO - all.infra.cluster_state - Deleting unexpected namespace: observe - cluster_state.py:reconcile_to_baseline:187
+2026-03-18 01:13:33 - INFO - all.sregym.conductor - Stopping Kubernetes API filtering proxy... - conductor.py:stop_k8s_proxy:110
+2026-03-18 01:13:33 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy stopped - k8s_proxy.py:stop:407
+2026-03-18 01:13:33 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-18 01:13:33 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

@@ -1,0 +1,17 @@
+2026-03-17 04:13:09 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x7af33f1c75f0> - conductor_api.py:run_api:191
+2026-03-17 04:13:09 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-17 04:13:09 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-17 04:13:10 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:102
+2026-03-17 04:13:10 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-17 04:13:10 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'} - k8s_proxy.py:start:398
+2026-03-17 04:13:10 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'locust-fetcher', 'load-generator'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-17 04:13:10 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-17 04:13:10 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:105
+2026-03-17 04:13:10 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:385
+2026-03-17 04:13:10 - INFO - all.sregym.conductor - [Session Start] Problem ID: faulty_image_correlated - conductor.py:start_problem:387
+2026-03-17 04:13:10 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: faulty_image_correlated - conductor.py:start_problem:388
+2026-03-17 04:13:10 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:514
+2026-03-17 04:13:10 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:515
+2026-03-17 04:13:10 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:522
+2026-03-17 04:13:11 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-17 04:13:11 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

@@ -1,0 +1,156 @@
+2026-03-17 21:50:42 - INFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'... - container_runner.py:build_image:221
+2026-03-17 21:50:45 - INFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully. - container_runner.py:build_image:238
+2026-03-17 21:50:45 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x7fd05f64b2c0> - conductor_api.py:run_api:191
+2026-03-17 21:50:45 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-17 21:50:45 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-17 21:50:46 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:103
+2026-03-17 21:50:46 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-17 21:50:46 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'} - k8s_proxy.py:start:398
+2026-03-17 21:50:46 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'load-generator', 'locust-fetcher'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-17 21:50:46 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-17 21:50:46 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:106
+2026-03-17 21:50:47 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:389
+2026-03-17 21:50:47 - INFO - all.sregym.conductor - [Session Start] Problem ID: stale_coredns_config_social_network - conductor.py:start_problem:391
+2026-03-17 21:50:47 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: stale_coredns_config_social_network - conductor.py:start_problem:392
+2026-03-17 21:50:47 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:521
+2026-03-17 21:50:47 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:522
+2026-03-17 21:50:47 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:529
+2026-03-17 21:50:50 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:533
+2026-03-17 21:50:55 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:540
+2026-03-17 21:50:56 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:546
+2026-03-17 21:50:56 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:133
+2026-03-17 21:50:56 - INFO - all.sregym.conductor - Undeploying app leftovers... - conductor.py:start_problem:410
+2026-03-17 21:50:56 - INFO - all.infra.helm - Helm Uninstall: social-network in namespace social-network - helm.py:uninstall:85
+2026-03-17 21:50:56 - WARNING - all.infra.helm - Release social-network does not exist. Skipping uninstall. - helm.py:uninstall:88
+2026-03-17 21:50:56 - WARNING - all.infra.kubectl - Namespace 'social-network' not found. - kubectl.py:delete_namespace:492
+2026-03-17 21:50:56 - INFO - all.sregym.conductor - App leftovers undeployed. - conductor.py:start_problem:412
+2026-03-17 21:50:56 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:413
+2026-03-17 21:50:56 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-17 21:50:56 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:558
+2026-03-17 21:50:56 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:564
+2026-03-17 21:51:07 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:583
+2026-03-17 21:51:09 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:606
+2026-03-17 21:51:09 - WARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment. - prometheus.py:deploy:71
+2026-03-17 21:51:09 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:609
+2026-03-17 21:51:10 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-17 21:51:10 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:612
+2026-03-17 21:51:11 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-17 21:51:11 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:616
+2026-03-17 21:51:11 - WARNING - all.infra.loki - Loki is already running. Skipping redeployment. - loki.py:deploy:87
+2026-03-17 21:51:11 - WARNING - all.infra.loki - Promtail is already running. Skipping redeployment. - loki.py:_deploy_promtail:170
+2026-03-17 21:51:11 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:621
+2026-03-17 21:51:12 - DEBUG - all.sregym.mcp_server - Port 9954 is already in use. Attempt 1 of 3. Retrying in 3 seconds... - mcp_server.py:start_port_forward:45
+2026-03-17 21:51:18 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-17 21:51:18 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-17 21:51:18 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:624
+2026-03-17 21:51:18 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:636
+2026-03-17 21:51:18 - INFO - all.application - Namespace social-network not found. Creating namespace. - base.py:create_namespace:73
+2026-03-17 21:51:18 - INFO - all.application - Namespace social-network created successfully: namespace/social-network created
+ - base.py:create_namespace:76
+2026-03-17 21:51:18 - DEBUG - all.sregym.social_network - TLS secret created: secret/mongodb-tls created - social_network.py:create_tls_secret:55
+2026-03-17 21:51:19 - INFO - all.infra.helm - Helm Install: social-network in namespace social-network - helm.py:install:35
+2026-03-17 21:51:54 - DEBUG - all.infra.helm - NAME: social-network
+LAST DEPLOYED: Tue Mar 17 21:51:48 2026
+NAMESPACE: social-network
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None - helm.py:install:72
+2026-03-17 21:53:35 - INFO - all.sregym.conductor - [ENV] Deploy application: Social Network - conductor.py:deploy_app:638
+2026-03-17 21:53:35 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'social-network' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 21:53:36 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'social-network' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 21:53:36 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'social-network' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 21:53:36 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'social-network' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 21:53:36 - INFO - all.infra.workload - Start Workload with Wrk2 - wrk2.py:start:322
+2026-03-17 21:53:36 - INFO - all.infra.workload - Checking for existing ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:72
+2026-03-17 21:53:37 - INFO - all.infra.workload - Creating ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:81
+2026-03-17 21:53:37 - INFO - all.infra.workload - ConfigMap 'wrk2-payload-script' created successfully. - wrk2.py:create_configmap:83
+2026-03-17 21:53:37 - INFO - all.infra.workload - Job created: wrk2-job - wrk2.py:create_wrk_job:133
+2026-03-17 21:53:37 - INFO - all.sregym.conductor - [ENV] Start workload - conductor.py:deploy_app:644
+2026-03-17 21:53:37 - INFO - all.sregym.conductor - App deployed. - conductor.py:start_problem:415
+2026-03-17 21:53:52 - INFO - all.sregym.conductor - [ENV] Injected fault - conductor.py:_inject_fault:219
+2026-03-17 21:53:52 - DEBUG - all.sregym.conductor - Advancing to stage 'diagnosis' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-17 21:53:52 - INFO - all.sregym.conductor - [STAGE] Go to stage diagnosis - conductor.py:_advance_to_next_stage:286
+2026-03-17 21:53:52 - INFO - all.sregym.conductor - ✅ Deployment complete. Ready for submission. Current stage is: diagnosis - conductor.py:start_problem:436
+2026-03-17 21:53:52 - INFO - all.sregym.container_runner - Starting containerized agent [stratus-run]: python -m clients.stratus.stratus_agent.driver.driver 2>&1 | tee /logs/driver.lo... - container_runner.py:run_async:195
+2026-03-17 21:53:55 - DEBUG - all.sregym.conductor_api - API returns Problem ID: stale_coredns_config_social_network - conductor_api.py:get_problem:181
+2026-03-17 21:53:55 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.social_network.SocialNetwork object at 0x7fd05f7b1400> - conductor_api.py:get_app:171
+2026-03-17 21:58:29 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit("The root cause of the failure is a misconfigured `user-mongodb` service in the `social-network` namespace. The service's YAML definition lacks proper endpoint binding, likely due to an incorrect or incomplete configuration (e.g., missing `port` or `targetPort` specifications). This prevents the service from routing traffic to the MongoDB pod, causing `user-service` to fail connecting to the database.") - parser.py:parse:28
+2026-03-17 21:58:29 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-17 21:58:29 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-17 21:58:29 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ["The root cause of the failure is a misconfigured `user-mongodb` service in the `social-network` namespace. The service's YAML definition lacks proper endpoint binding, likely due to an incorrect or incomplete configuration (e.g., missing `port` or `targetPort` specifications). This prevents the service from routing traffic to the MongoDB pod, causing `user-service` to fail connecting to the database."], {} - parser.py:parse:34
+2026-03-17 21:58:29 - INFO - all.sregym.conductor - Evaluating stage 'diagnosis' - conductor.py:_submit_evaluate_and_advance:449 [sol = The root cause of the failure is a misconfigured `user-mongodb` service in the `social-network` namespace. The service's YAML definition lacks proper endpoint binding, likely due to an incorrect or incomplete configuration (e.g., missing `port` or `targetPort` specifications). This prevents the service from routing traffic to the MongoDB pod, causing `user-service` to fail connecting to the database.]
+2026-03-17 21:58:29 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-17 21:58:30 - INFO - all.sregym.conductor - Start Eval for Diagnosis - conductor.py:_evaluate_diagnosis:235 [sol = The root cause of the failure is a misconfigured `user-mongodb` service in the `social-network` namespace. The service's YAML definition lacks proper endpoint binding, likely due to an incorrect or incomplete configuration (e.g., missing `port` or `targetPort` specifications). This prevents the service from routing traffic to the MongoDB pod, causing `user-service` to fail connecting to the database.]
+2026-03-17 21:58:40 - INFO - all.sregym.conductor - [EVAL] Diagnosis Failed
+ TTL: 288.0165812969208 - conductor.py:_evaluate_diagnosis:239
+2026-03-17 21:58:40 - DEBUG - all.sregym.conductor - Advancing to stage 'mitigation' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-17 21:58:40 - INFO - all.sregym.conductor - [STAGE] Go to stage mitigation - conductor.py:_advance_to_next_stage:286
+2026-03-17 21:58:40 - INFO - all.sregym.conductor - Restarting noise manager for next stage... - conductor.py:_submit_evaluate_and_advance:470
+2026-03-17 21:58:41 - DEBUG - all.sregym.conductor_api - API returns Current stage: mitigation - conductor_api.py:get_status:161
+2026-03-17 21:58:41 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.social_network.SocialNetwork object at 0x7fd05f7b1400> - conductor_api.py:get_app:171
+2026-03-17 22:00:22 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit('') - parser.py:parse:28
+2026-03-17 22:00:22 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-17 22:00:22 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-17 22:00:22 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: [''], {} - parser.py:parse:34
+2026-03-17 22:00:22 - INFO - all.sregym.conductor - Evaluating stage 'mitigation' - conductor.py:_submit_evaluate_and_advance:449 [sol = ]
+2026-03-17 22:00:22 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-17 22:00:22 - DEBUG - all.infra.k8s_proxy - Proxy: "GET /api/v1/namespaces/social-network/services/nginx-thrift HTTP/1.1" 200 - - k8s_proxy.py:log_message:193
+2026-03-17 22:00:23 - INFO - all.sregym.conductor - Start Eval for Mitigation - conductor.py:_evaluate_mitigation:250 [sol = ]
+2026-03-17 22:00:36 - INFO - all.sregym.conductor - [EVAL] Mitigation Failed
+ TTM: 404.6554310321808 - conductor.py:_evaluate_mitigation:254
+2026-03-17 22:00:36 - INFO - all.sregym.conductor - [STAGE] Done, initiating teardown - conductor.py:_finish_problem:348
+2026-03-17 22:00:36 - INFO - all.sregym.conductor - [CLEANUP] Starting cleanup (fault recovery, undeploy, reconcile) - conductor.py:_cleanup_sync:304
+2026-03-17 22:00:36 - INFO - all.sregym.conductor - [STAGE] Teardown initiated, cleanup running in background - conductor.py:_finish_problem:357
+2026-03-17 22:00:36 - INFO - all.sregym.conductor - [CLEANUP] NoiseManager stopped - conductor.py:_cleanup_sync:310
+2026-03-17 22:00:36 - INFO - all.sregym.conductor - [CLEANUP] Recovering fault... - conductor.py:_cleanup_sync:316
+2026-03-17 22:00:42 - INFO - all.sregym.conductor - [CLEANUP] Fault recovered - conductor.py:_cleanup_sync:318
+2026-03-17 22:00:42 - INFO - all.sregym.conductor - [CLEANUP] Undeploying app... - conductor.py:_cleanup_sync:324
+2026-03-17 22:00:42 - INFO - all.infra.helm - Helm Uninstall: social-network in namespace social-network - helm.py:uninstall:85
+2026-03-17 22:00:47 - DEBUG - all.infra.helm - release "social-network" uninstalled - helm.py:uninstall:108
+2026-03-17 22:01:34 - INFO - all.infra.kubectl - Namespace 'social-network' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-17 22:01:34 - INFO - all.sregym.conductor - [CLEANUP] App undeployed - conductor.py:_cleanup_sync:326
+2026-03-17 22:01:34 - INFO - all.sregym.conductor - [CLEANUP] Reconciling cluster state to baseline... - conductor.py:_cleanup_sync:330
+2026-03-17 22:01:34 - INFO - all.infra.cluster_state - Reconciling cluster to baseline state... - cluster_state.py:reconcile_to_baseline:168
+2026-03-17 22:01:34 - INFO - all.infra.cluster_state - Deleting unexpected namespace: astronomy-shop - cluster_state.py:reconcile_to_baseline:187
+2026-03-17 22:02:33 - INFO - all.infra.kubectl - Namespace 'astronomy-shop' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-17 22:02:33 - INFO - all.infra.cluster_state - Deleting unexpected namespace: openebs - cluster_state.py:reconcile_to_baseline:187
+2026-03-17 22:02:52 - INFO - all.infra.kubectl - Namespace 'openebs' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-17 22:02:52 - INFO - all.infra.cluster_state - Deleting unexpected namespace: observe - cluster_state.py:reconcile_to_baseline:187
+2026-03-17 22:03:50 - INFO - all.infra.kubectl - Namespace 'observe' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-17 22:03:50 - INFO - all.infra.cluster_state - Deleting unexpected namespace: sregym - cluster_state.py:reconcile_to_baseline:187
+2026-03-17 22:04:03 - INFO - all.infra.kubectl - Namespace 'sregym' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRole: otel-collector - cluster_state.py:reconcile_to_baseline:201
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRole: loki-clusterrole - cluster_state.py:reconcile_to_baseline:201
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRole: grafana-clusterrole - cluster_state.py:reconcile_to_baseline:201
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRole: prometheus-server - cluster_state.py:reconcile_to_baseline:201
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRole: promtail - cluster_state.py:reconcile_to_baseline:201
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRole: prometheus-kube-state-metrics - cluster_state.py:reconcile_to_baseline:201
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRole: mcp-server - cluster_state.py:reconcile_to_baseline:201
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRole: openebs-maya-operator - cluster_state.py:reconcile_to_baseline:201
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRoleBinding: loki-clusterrolebinding - cluster_state.py:reconcile_to_baseline:215
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRoleBinding: metrics-server:system:auth-delegator - cluster_state.py:reconcile_to_baseline:215
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRoleBinding: otel-collector - cluster_state.py:reconcile_to_baseline:215
+2026-03-17 22:04:03 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRoleBinding: prometheus-server - cluster_state.py:reconcile_to_baseline:215
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRoleBinding: promtail - cluster_state.py:reconcile_to_baseline:215
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRoleBinding: prometheus-kube-state-metrics - cluster_state.py:reconcile_to_baseline:215
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRoleBinding: mcp-server - cluster_state.py:reconcile_to_baseline:215
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRoleBinding: grafana-clusterrolebinding - cluster_state.py:reconcile_to_baseline:215
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected ClusterRoleBinding: openebs-maya-operator - cluster_state.py:reconcile_to_baseline:215
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected PersistentVolume: pvc-da0bd402-4ac1-47ef-8ca9-dfc0f3f0084a - cluster_state.py:reconcile_to_baseline:227
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected PersistentVolume: pvc-020248f6-2d72-4c92-9daf-da9397ae19f8 - cluster_state.py:reconcile_to_baseline:227
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected PersistentVolume: pvc-2c47102c-ced7-406e-bfef-1b8108f176e2 - cluster_state.py:reconcile_to_baseline:227
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected StorageClass: openebs-device - cluster_state.py:reconcile_to_baseline:239
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected StorageClass: openebs-hostpath - cluster_state.py:reconcile_to_baseline:239
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected CRD: blockdeviceclaims.openebs.io - cluster_state.py:reconcile_to_baseline:251
+2026-03-17 22:04:04 - INFO - all.infra.cluster_state - Deleting unexpected CRD: blockdevices.openebs.io - cluster_state.py:reconcile_to_baseline:251
+2026-03-17 22:04:05 - INFO - all.infra.cluster_state - Resetting CoreDNS ConfigMap to baseline - cluster_state.py:reconcile_to_baseline:291
+2026-03-17 22:04:05 - INFO - all.infra.cluster_state - CoreDNS ConfigMap restored to baseline - cluster_state.py:_restore_coredns_configmap:427
+2026-03-17 22:04:05 - INFO - all.infra.cluster_state - Reconciliation complete: {'namespaces_deleted': ['astronomy-shop', 'openebs', 'observe', 'sregym'], 'cluster_roles_deleted': ['otel-collector', 'loki-clusterrole', 'grafana-clusterrole', 'prometheus-server', 'promtail', 'prometheus-kube-state-metrics', 'mcp-server', 'openebs-maya-operator'], 'cluster_role_bindings_deleted': ['loki-clusterrolebinding', 'metrics-server:system:auth-delegator', 'otel-collector', 'prometheus-server', 'promtail', 'prometheus-kube-state-metrics', 'mcp-server', 'grafana-clusterrolebinding', 'openebs-maya-operator'], 'persistent_volumes_deleted': ['pvc-da0bd402-4ac1-47ef-8ca9-dfc0f3f0084a', 'pvc-020248f6-2d72-4c92-9daf-da9397ae19f8', 'pvc-2c47102c-ced7-406e-bfef-1b8108f176e2'], 'storage_classes_deleted': ['openebs-device', 'openebs-hostpath'], 'crds_deleted': ['blockdeviceclaims.openebs.io', 'blockdevices.openebs.io'], 'validating_webhook_configs_deleted': [], 'mutating_webhook_configs_deleted': [], 'nodes_labels_reset': [], 'nodes_taints_reset': [], 'coredns_reset': True} - cluster_state.py:reconcile_to_baseline:295
+2026-03-17 22:04:05 - INFO - all.sregym.conductor - Cluster state reconciliation changes: {'namespaces_deleted': ['astronomy-shop', 'openebs', 'observe', 'sregym'], 'cluster_roles_deleted': ['otel-collector', 'loki-clusterrole', 'grafana-clusterrole', 'prometheus-server', 'promtail', 'prometheus-kube-state-metrics', 'mcp-server', 'openebs-maya-operator'], 'cluster_role_bindings_deleted': ['loki-clusterrolebinding', 'metrics-server:system:auth-delegator', 'otel-collector', 'prometheus-server', 'promtail', 'prometheus-kube-state-metrics', 'mcp-server', 'grafana-clusterrolebinding', 'openebs-maya-operator'], 'persistent_volumes_deleted': ['pvc-da0bd402-4ac1-47ef-8ca9-dfc0f3f0084a', 'pvc-020248f6-2d72-4c92-9daf-da9397ae19f8', 'pvc-2c47102c-ced7-406e-bfef-1b8108f176e2'], 'storage_classes_deleted': ['openebs-device', 'openebs-hostpath'], 'crds_deleted': ['blockdeviceclaims.openebs.io', 'blockdevices.openebs.io'], 'validating_webhook_configs_deleted': [], 'mutating_webhook_configs_deleted': [], 'nodes_labels_reset': [], 'nodes_taints_reset': [], 'coredns_reset': True} - conductor.py:_cleanup_sync:334
+2026-03-17 22:04:05 - INFO - all.sregym.conductor - [CLEANUP] Cluster state reconciled - conductor.py:_cleanup_sync:335
+2026-03-17 22:04:05 - INFO - all.sregym.conductor - [CLEANUP] Cleanup complete, stage set to 'done' - conductor.py:_cleanup_sync:341
+2026-03-17 22:04:10 - INFO - all.sregym.conductor - Stopping Kubernetes API filtering proxy... - conductor.py:stop_k8s_proxy:110
+2026-03-17 22:04:11 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy stopped - k8s_proxy.py:stop:407
+2026-03-17 22:04:11 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-17 22:04:11 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

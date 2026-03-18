@@ -1,0 +1,272 @@
+2026-03-18 02:08:09 - INFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'... - container_runner.py:build_image:221
+2026-03-18 02:08:13 - INFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully. - container_runner.py:build_image:238
+2026-03-18 02:08:13 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x7c98d2f2af90> - conductor_api.py:run_api:191
+2026-03-18 02:08:13 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-18 02:08:13 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-18 02:08:14 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:103
+2026-03-18 02:08:14 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-18 02:08:14 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'} - k8s_proxy.py:start:398
+2026-03-18 02:08:14 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'locust-fetcher', 'load-generator'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-18 02:08:14 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-18 02:08:14 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:106
+2026-03-18 02:08:14 - INFO - all.application - Namespace astronomy-shop not found. Creating namespace. - base.py:create_namespace:73
+2026-03-18 02:08:15 - INFO - all.application - Namespace astronomy-shop created successfully: namespace/astronomy-shop created
+ - base.py:create_namespace:76
+2026-03-18 02:08:15 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:389
+2026-03-18 02:08:15 - INFO - all.sregym.conductor - [Session Start] Problem ID: astronomy_shop_product_catalog_service_failure - conductor.py:start_problem:391
+2026-03-18 02:08:15 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: astronomy_shop_product_catalog_service_failure - conductor.py:start_problem:392
+2026-03-18 02:08:15 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:521
+2026-03-18 02:08:15 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:522
+2026-03-18 02:08:15 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:529
+2026-03-18 02:08:18 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:533
+2026-03-18 02:08:18 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:540
+2026-03-18 02:08:18 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:546
+2026-03-18 02:08:18 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:133
+2026-03-18 02:08:18 - INFO - all.sregym.conductor - ⏩ Mitigation oracle is not attached. Skipping mitigation. - conductor.py:_build_stage_sequence:208
+2026-03-18 02:08:18 - INFO - all.sregym.conductor - Undeploying app leftovers... - conductor.py:start_problem:410
+2026-03-18 02:08:18 - INFO - all.infra.helm - Helm Uninstall: astronomy-shop in namespace astronomy-shop - helm.py:uninstall:85
+2026-03-18 02:08:18 - WARNING - all.infra.helm - Release astronomy-shop does not exist. Skipping uninstall. - helm.py:uninstall:88
+2026-03-18 02:08:25 - INFO - all.infra.kubectl - Namespace 'astronomy-shop' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 02:08:25 - INFO - all.sregym.conductor - App leftovers undeployed. - conductor.py:start_problem:412
+2026-03-18 02:08:25 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:413
+2026-03-18 02:08:25 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-18 02:08:25 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:558
+2026-03-18 02:08:25 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:564
+2026-03-18 02:08:35 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:583
+2026-03-18 02:08:59 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:606
+2026-03-18 02:08:59 - WARNING - all.infra.prometheus - PersistentVolumeClaim prometheus-pvc not found. Skipping deletion. - prometheus.py:_delete_pvc:110
+2026-03-18 02:08:59 - INFO - all.infra.helm - Helm Uninstall: prometheus in namespace observe - helm.py:uninstall:85
+2026-03-18 02:08:59 - WARNING - all.infra.helm - Release prometheus does not exist. Skipping uninstall. - helm.py:uninstall:88
+2026-03-18 02:08:59 - INFO - all.infra.prometheus - Applying PersistentVolumeClaim from /home/htl/SREGym/sregym/observer/prometheus/prometheus-pvc.yml - prometheus.py:_apply_pvc:97
+2026-03-18 02:09:00 - INFO - all.infra.helm - Helm Install: prometheus in namespace observe - helm.py:install:35
+2026-03-18 02:09:17 - DEBUG - all.infra.helm - NAME: prometheus
+LAST DEPLOYED: Wed Mar 18 02:09:14 2026
+NAMESPACE: observe
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+The Prometheus server can be accessed via port 80 on the following DNS name from within your cluster:
+prometheus-server.observe.svc.cluster.local
+
+
+Get the Prometheus server URL by running these commands in the same shell:
+  export NODE_PORT=$(kubectl get --namespace observe -o jsonpath="{.spec.ports[0].nodePort}" services prometheus-server)
+  export NODE_IP=$(kubectl get nodes --namespace observe -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+
+
+The Prometheus alertmanager can be accessed via port 9093 on the following DNS name from within your cluster:
+prometheus-alertmanager.observe.svc.cluster.local
+
+
+Get the Alertmanager URL by running these commands in the same shell:
+  export POD_NAME=$(kubectl get pods --namespace observe -l "app.kubernetes.io/name=alertmanager,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
+  kubectl --namespace observe port-forward $POD_NAME 9093
+#################################################################################
+######   WARNING: Pod Security Policy has been disabled by default since    #####
+######            it deprecated after k8s 1.25+. use                        #####
+######            (index .Values "prometheus-node-exporter" "rbac"          #####
+###### .          "pspEnabled") with (index .Values                         #####
+######            "prometheus-node-exporter" "rbac" "pspAnnotations")       #####
+######            in case you still need it.                                #####
+#################################################################################
+
+
+The Prometheus PushGateway can be accessed via port 9091 on the following DNS name from within your cluster:
+prometheus-prometheus-pushgateway.observe.svc.cluster.local
+
+
+Get the PushGateway URL by running these commands in the same shell:
+  export POD_NAME=$(kubectl get pods --namespace observe -l "app=prometheus-pushgateway,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
+  kubectl --namespace observe port-forward $POD_NAME 9091
+
+For more information on running Prometheus, visit:
+https://prometheus.io/ - helm.py:install:72
+2026-03-18 02:10:15 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:609
+2026-03-18 02:10:16 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-18 02:10:16 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:612
+2026-03-18 02:10:24 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-18 02:10:24 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:616
+2026-03-18 02:10:25 - WARNING - all.infra.loki - PersistentVolumeClaim loki-pvc not found. Skipping deletion. - loki.py:_delete_pvc:138
+2026-03-18 02:10:25 - INFO - all.infra.helm - Helm Uninstall: loki in namespace observe - helm.py:uninstall:85
+2026-03-18 02:10:25 - WARNING - all.infra.helm - Release loki does not exist. Skipping uninstall. - helm.py:uninstall:88
+2026-03-18 02:10:25 - INFO - all.infra.loki - Adding Grafana Helm repository... - loki.py:_add_grafana_helm_repo:108
+2026-03-18 02:10:28 - INFO - all.infra.loki - Applying PersistentVolumeClaim from /home/htl/SREGym/sregym/observer/loki/loki-pvc.yml - loki.py:_apply_pvc:125
+2026-03-18 02:10:28 - INFO - all.infra.helm - Helm Install: loki in namespace observe - helm.py:install:35
+2026-03-18 02:10:31 - DEBUG - all.infra.helm - NAME: loki
+LAST DEPLOYED: Wed Mar 18 02:10:29 2026
+NAMESPACE: observe
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+***********************************************************************
+ Welcome to Grafana Loki
+ Chart version: 6.55.0
+ Chart Name: loki
+ Loki version: 3.6.7
+***********************************************************************
+
+** Please be patient while the chart is being deployed **
+
+Tip:
+
+  Watch the deployment status using the command: kubectl get pods -w --namespace observe
+
+If pods are taking too long to schedule make sure pod affinity can be fulfilled in the current cluster.
+
+***********************************************************************
+Installed components:
+***********************************************************************
+* loki
+
+Loki has been deployed as a single binary.
+This means a single pod is handling reads and writes. You can scale that pod vertically by adding more CPU and memory resources.
+
+
+***********************************************************************
+Sending logs to Loki
+***********************************************************************
+
+Loki has been configured with a gateway (nginx) to support reads and writes from a single component.
+
+You can send logs from inside the cluster using the cluster DNS:
+
+http://loki-gateway.observe.svc.cluster.local/loki/api/v1/push
+
+You can test to send data from outside the cluster by port-forwarding the gateway to your local machine:
+
+  kubectl port-forward --namespace observe svc/loki-gateway 3100:80 &
+
+And then using http://127.0.0.1:3100/loki/api/v1/push URL as shown below:
+
+```
+curl -H "Content-Type: application/json" -XPOST -s "http://127.0.0.1:3100/loki/api/v1/push"  \
+--data-raw "{\"streams\": [{\"stream\": {\"job\": \"test\"}, \"values\": [[\"$(date +%s)000000000\", \"fizzbuzz\"]]}]}"
+```
+
+Then verify that Loki did receive the data using the following command:
+
+```
+curl "http://127.0.0.1:3100/loki/api/v1/query_range" --data-urlencode 'query={job="test"}' | jq .data.result
+```
+
+***********************************************************************
+Connecting Grafana to Loki
+***********************************************************************
+
+If Grafana operates within the cluster, you'll set up a new Loki datasource by utilizing the following URL:
+
+http://loki-gateway.observe.svc.cluster.local/ - helm.py:install:72
+2026-03-18 02:11:29 - INFO - all.infra.loki - Deploying Promtail for Loki log collection... - loki.py:_deploy_promtail:173
+2026-03-18 02:11:29 - INFO - all.infra.helm - Helm Install: promtail in namespace observe - helm.py:install:35
+2026-03-18 02:11:31 - WARNING - all.infra.helm - Helm install stderr output:
+level=WARN msg="this chart is deprecated" - helm.py:install:63
+2026-03-18 02:11:31 - DEBUG - all.infra.helm - NAME: promtail
+LAST DEPLOYED: Wed Mar 18 02:11:30 2026
+NAMESPACE: observe
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+***********************************************************************
+ Welcome to Grafana Promtail
+ Chart version: 6.17.1
+ Promtail version: 3.5.1
+***********************************************************************
+
+Verify the application is working by running these commands:
+* kubectl --namespace observe port-forward daemonset/promtail 3101
+* curl http://127.0.0.1:3101/metrics - helm.py:install:72
+2026-03-18 02:11:53 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:621
+2026-03-18 02:12:25 - DEBUG - all.sregym.mcp_server - Port 9954 is already in use. Attempt 1 of 3. Retrying in 3 seconds... - mcp_server.py:start_port_forward:45
+2026-03-18 02:12:31 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-18 02:12:31 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-18 02:12:31 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:624
+2026-03-18 02:12:31 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:636
+2026-03-18 02:12:31 - INFO - all.infra.kubectl - Namespace 'astronomy-shop' not found. Creating namespace. - kubectl.py:create_namespace_if_not_exist:503
+2026-03-18 02:12:31 - INFO - all.infra.kubectl - Namespace 'astronomy-shop' created successfully. - kubectl.py:create_namespace_if_not_exist:506
+2026-03-18 02:12:31 - INFO - all.infra.helm - Helm Install: astronomy-shop in namespace astronomy-shop - helm.py:install:35
+2026-03-18 02:12:49 - DEBUG - all.infra.helm - NAME: astronomy-shop
+LAST DEPLOYED: Wed Mar 18 02:12:41 2026
+NAMESPACE: astronomy-shop
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+=======================================================================================
+
+
+ ██████╗ ████████╗███████╗██╗         ██████╗ ███████╗███╗   ███╗ ██████╗
+██╔═══██╗╚══██╔══╝██╔════╝██║         ██╔══██╗██╔════╝████╗ ████║██╔═══██╗
+██║   ██║   ██║   █████╗  ██║         ██║  ██║█████╗  ██╔████╔██║██║   ██║
+██║   ██║   ██║   ██╔══╝  ██║         ██║  ██║██╔══╝  ██║╚██╔╝██║██║   ██║
+╚██████╔╝   ██║   ███████╗███████╗    ██████╔╝███████╗██║ ╚═╝ ██║╚██████╔╝
+ ╚═════╝    ╚═╝   ╚══════╝╚══════╝    ╚═════╝ ╚══════╝╚═╝     ╚═╝ ╚═════╝
+
+
+- All services are available via the Frontend proxy: http://localhost:8080
+  by running these commands:
+     kubectl --namespace astronomy-shop port-forward svc/frontend-proxy 8080:8080
+
+  The following services are available at these paths after the frontend-proxy service is exposed with port forwarding:
+  Webstore             http://localhost:8080/
+  Jaeger UI            http://localhost:8080/jaeger/ui/
+  Grafana              http://localhost:8080/grafana/
+  Load Generator UI    http://localhost:8080/loadgen/
+  Feature Flags UI     http://localhost:8080/feature/ - helm.py:install:72
+2026-03-18 02:15:03 - INFO - all.sregym.conductor - [ENV] Deploy application: OpenTelemetry Demo Astronomy Shop - conductor.py:deploy_app:638
+2026-03-18 02:15:04 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'astronomy-shop' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 02:15:04 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'astronomy-shop' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 02:15:04 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'astronomy-shop' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 02:15:05 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'astronomy-shop' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 02:15:05 - INFO - all.sregym.jaeger - Restarted otel-collector-agent DaemonSet in namespace 'astronomy-shop' - jaeger.py:create_external_name_service:92
+2026-03-18 02:15:05 - INFO - all.infra.workload - Start Workload with Locust - locust.py:start:183
+2026-03-18 02:15:05 - INFO - all.infra.workload - AstronomyShop has a built-in load generator. - locust.py:start:184
+2026-03-18 02:15:05 - INFO - all.infra.workload - Creating locust-fetcher pod... - locust.py:start:185
+2026-03-18 02:15:10 - DEBUG - all.infra.workload - Workload started - locust.py:start:187
+2026-03-18 02:15:10 - INFO - all.sregym.conductor - [ENV] Start workload - conductor.py:deploy_app:644
+2026-03-18 02:15:10 - INFO - all.sregym.conductor - App deployed. - conductor.py:start_problem:415
+2026-03-18 02:15:11 - INFO - all.infra.kubectl - ConfigMap 'flagd-config' updated in namespace 'astronomy-shop' - kubectl.py:create_or_update_configmap:441
+2026-03-18 02:15:11 - INFO - all.sregym.conductor - [ENV] Injected fault - conductor.py:_inject_fault:219
+2026-03-18 02:15:11 - DEBUG - all.sregym.conductor - Advancing to stage 'diagnosis' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-18 02:15:11 - INFO - all.sregym.conductor - [STAGE] Go to stage diagnosis - conductor.py:_advance_to_next_stage:286
+2026-03-18 02:15:11 - INFO - all.sregym.conductor - ✅ Deployment complete. Ready for submission. Current stage is: diagnosis - conductor.py:start_problem:436
+2026-03-18 02:15:11 - INFO - all.sregym.container_runner - Starting containerized agent [stratus-run]: python -m clients.stratus.stratus_agent.driver.driver 2>&1 | tee /logs/driver.lo... - container_runner.py:run_async:195
+2026-03-18 02:15:15 - DEBUG - all.sregym.conductor_api - API returns Problem ID: astronomy_shop_product_catalog_service_failure - conductor_api.py:get_problem:181
+2026-03-18 02:15:15 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.astronomy_shop.AstronomyShop object at 0x7c98d3187530> - conductor_api.py:get_app:171
+2026-03-18 02:19:18 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit("The root cause of the failure is that the **product-catalog** service has no endpoints, meaning no pods are associated with it despite the pod being in a 'Running' state. This is likely due to a misconfiguration in the service's selector or port mapping. The service's selector matches the pod's label (`opentelemetry.io/name=product-catalog`), but the absence of endpoints indicates that the service is not correctly routing traffic to the pod. This prevents the frontend and other services from communicating with **product-catalog**, leading to potential failures in dependent operations.") - parser.py:parse:28
+2026-03-18 02:19:18 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 02:19:18 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 02:19:18 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ["The root cause of the failure is that the **product-catalog** service has no endpoints, meaning no pods are associated with it despite the pod being in a 'Running' state. This is likely due to a misconfiguration in the service's selector or port mapping. The service's selector matches the pod's label (`opentelemetry.io/name=product-catalog`), but the absence of endpoints indicates that the service is not correctly routing traffic to the pod. This prevents the frontend and other services from communicating with **product-catalog**, leading to potential failures in dependent operations."], {} - parser.py:parse:34
+2026-03-18 02:19:18 - INFO - all.sregym.conductor - Evaluating stage 'diagnosis' - conductor.py:_submit_evaluate_and_advance:449 [sol = The root cause of the failure is that the **product-catalog** service has no endpoints, meaning no pods are associated with it despite the pod being in a 'Running' state. This is likely due to a misconfiguration in the service's selector or port mapping. The service's selector matches the pod's label (`opentelemetry.io/name=product-catalog`), but the absence of endpoints indicates that the service is not correctly routing traffic to the pod. This prevents the frontend and other services from communicating with **product-catalog**, leading to potential failures in dependent operations.]
+2026-03-18 02:19:18 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-18 02:19:18 - INFO - all.sregym.conductor - Start Eval for Diagnosis - conductor.py:_evaluate_diagnosis:235 [sol = The root cause of the failure is that the **product-catalog** service has no endpoints, meaning no pods are associated with it despite the pod being in a 'Running' state. This is likely due to a misconfiguration in the service's selector or port mapping. The service's selector matches the pod's label (`opentelemetry.io/name=product-catalog`), but the absence of endpoints indicates that the service is not correctly routing traffic to the pod. This prevents the frontend and other services from communicating with **product-catalog**, leading to potential failures in dependent operations.]
+2026-03-18 02:19:21 - INFO - all.sregym.conductor - [EVAL] Diagnosis Failed
+ TTL: 250.28677558898926 - conductor.py:_evaluate_diagnosis:239
+2026-03-18 02:19:21 - INFO - all.sregym.conductor - [STAGE] Done, initiating teardown - conductor.py:_finish_problem:348
+2026-03-18 02:19:21 - INFO - all.sregym.conductor - [CLEANUP] Starting cleanup (fault recovery, undeploy, reconcile) - conductor.py:_cleanup_sync:304
+2026-03-18 02:19:21 - INFO - all.sregym.conductor - [STAGE] Teardown initiated, cleanup running in background - conductor.py:_finish_problem:357
+2026-03-18 02:19:21 - INFO - all.sregym.conductor - [CLEANUP] NoiseManager stopped - conductor.py:_cleanup_sync:310
+2026-03-18 02:19:21 - INFO - all.sregym.conductor - [CLEANUP] Recovering fault... - conductor.py:_cleanup_sync:316
+2026-03-18 02:19:21 - INFO - all.infra.kubectl - ConfigMap 'flagd-config' updated in namespace 'astronomy-shop' - kubectl.py:create_or_update_configmap:441
+2026-03-18 02:19:22 - INFO - all.sregym.conductor - [CLEANUP] Fault recovered - conductor.py:_cleanup_sync:318
+2026-03-18 02:19:22 - INFO - all.sregym.conductor - [CLEANUP] Undeploying app... - conductor.py:_cleanup_sync:324
+2026-03-18 02:19:22 - INFO - all.infra.helm - Helm Uninstall: astronomy-shop in namespace astronomy-shop - helm.py:uninstall:85
+2026-03-18 02:19:26 - DEBUG - all.infra.helm - release "astronomy-shop" uninstalled - helm.py:uninstall:108
+2026-03-18 02:20:13 - INFO - all.infra.kubectl - Namespace 'astronomy-shop' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 02:20:13 - INFO - all.sregym.conductor - [CLEANUP] App undeployed - conductor.py:_cleanup_sync:326
+2026-03-18 02:20:13 - INFO - all.sregym.conductor - [CLEANUP] Reconciling cluster state to baseline... - conductor.py:_cleanup_sync:330
+2026-03-18 02:20:13 - INFO - all.infra.cluster_state - Reconciling cluster to baseline state... - cluster_state.py:reconcile_to_baseline:168
+2026-03-18 02:20:13 - INFO - all.infra.cluster_state - Deleting unexpected namespace: observe - cluster_state.py:reconcile_to_baseline:187
+2026-03-18 02:21:12 - INFO - all.infra.kubectl - Namespace 'observe' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 02:21:12 - INFO - all.infra.cluster_state - Deleting unexpected namespace: openebs - cluster_state.py:reconcile_to_baseline:187
+2026-03-18 02:21:19 - INFO - all.sregym.conductor - Stopping Kubernetes API filtering proxy... - conductor.py:stop_k8s_proxy:110
+2026-03-18 02:21:19 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy stopped - k8s_proxy.py:stop:407
+2026-03-18 02:21:19 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-18 02:21:19 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

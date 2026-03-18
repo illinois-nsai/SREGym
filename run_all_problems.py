@@ -9,7 +9,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 DEFAULT_AGENT = "stratus"
 DEFAULT_MODEL = "qwen-8b"
 REPO_ROOT = Path(__file__).resolve().parent

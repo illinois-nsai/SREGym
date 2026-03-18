@@ -1,0 +1,121 @@
+2026-03-18 04:06:05 - INFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'... - container_runner.py:build_image:221
+2026-03-18 04:06:09 - INFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully. - container_runner.py:build_image:238
+2026-03-18 04:06:09 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x7067859631a0> - conductor_api.py:run_api:191
+2026-03-18 04:06:09 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-18 04:06:09 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-18 04:06:10 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:103
+2026-03-18 04:06:10 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-18 04:06:10 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'} - k8s_proxy.py:start:398
+2026-03-18 04:06:10 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'locust-fetcher', 'load-generator'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-18 04:06:10 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-18 04:06:10 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:106
+2026-03-18 04:06:10 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:389
+2026-03-18 04:06:10 - INFO - all.sregym.conductor - [Session Start] Problem ID: ingress_misroute - conductor.py:start_problem:391
+2026-03-18 04:06:10 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: ingress_misroute - conductor.py:start_problem:392
+2026-03-18 04:06:10 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:521
+2026-03-18 04:06:10 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:522
+2026-03-18 04:06:10 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:529
+2026-03-18 04:06:13 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:533
+2026-03-18 04:06:13 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:540
+2026-03-18 04:06:14 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:546
+2026-03-18 04:06:14 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:133
+2026-03-18 04:06:14 - INFO - all.sregym.conductor - Undeploying app leftovers... - conductor.py:start_problem:410
+2026-03-18 04:06:14 - WARNING - all.infra.kubectl - Namespace 'hotel-reservation' not found. - kubectl.py:delete_namespace:492
+2026-03-18 04:06:19 - INFO - all.sregym.conductor - App leftovers undeployed. - conductor.py:start_problem:412
+2026-03-18 04:06:19 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:413
+2026-03-18 04:06:19 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-18 04:06:19 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:558
+2026-03-18 04:06:19 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:564
+2026-03-18 04:06:30 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:583
+2026-03-18 04:06:32 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:606
+2026-03-18 04:06:32 - WARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment. - prometheus.py:deploy:71
+2026-03-18 04:06:32 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:609
+2026-03-18 04:06:33 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-18 04:06:33 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:612
+2026-03-18 04:06:34 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-18 04:06:34 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:616
+2026-03-18 04:06:34 - WARNING - all.infra.loki - Loki is already running. Skipping redeployment. - loki.py:deploy:87
+2026-03-18 04:06:34 - WARNING - all.infra.loki - Promtail is already running. Skipping redeployment. - loki.py:_deploy_promtail:170
+2026-03-18 04:06:34 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:621
+2026-03-18 04:07:06 - DEBUG - all.sregym.mcp_server - Port 9954 is already in use. Attempt 1 of 3. Retrying in 3 seconds... - mcp_server.py:start_port_forward:45
+2026-03-18 04:07:12 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-18 04:07:12 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-18 04:07:12 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:624
+2026-03-18 04:07:12 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:636
+2026-03-18 04:07:12 - INFO - all.application - Deploying Kubernetes configurations in namespace: hotel-reservation - hotel_reservation.py:deploy:78
+2026-03-18 04:07:12 - INFO - all.application - Namespace hotel-reservation not found. Creating namespace. - base.py:create_namespace:73
+2026-03-18 04:07:12 - INFO - all.application - Namespace hotel-reservation created successfully: namespace/hotel-reservation created
+ - base.py:create_namespace:76
+2026-03-18 04:07:12 - INFO - all.infra.kubectl - ConfigMap 'mongo-rate-script' created in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:447
+2026-03-18 04:07:12 - INFO - all.infra.kubectl - ConfigMap 'mongo-geo-script' created in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:447
+2026-03-18 04:07:12 - INFO - all.infra.kubectl - ConfigMap 'failure-admin-rate' created in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:447
+2026-03-18 04:07:12 - INFO - all.infra.kubectl - ConfigMap 'failure-admin-geo' created in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:447
+2026-03-18 04:09:23 - INFO - all.sregym.conductor - [ENV] Deploy application: Hotel Reservation - conductor.py:deploy_app:638
+2026-03-18 04:09:24 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 04:09:24 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 04:09:25 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 04:09:25 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 04:09:25 - INFO - all.infra.workload - Start Workload with Wrk2 - wrk2.py:start:322
+2026-03-18 04:09:25 - INFO - all.infra.workload - Checking for existing ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:72
+2026-03-18 04:09:25 - INFO - all.infra.workload - Creating ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:81
+2026-03-18 04:09:25 - INFO - all.infra.workload - ConfigMap 'wrk2-payload-script' created successfully. - wrk2.py:create_configmap:83
+2026-03-18 04:09:25 - INFO - all.infra.workload - Job created: wrk2-job - wrk2.py:create_wrk_job:133
+2026-03-18 04:09:25 - INFO - all.sregym.conductor - [ENV] Start workload - conductor.py:deploy_app:644
+2026-03-18 04:09:25 - INFO - all.sregym.conductor - App deployed. - conductor.py:start_problem:415
+2026-03-18 04:10:45 - INFO - all.sregym.ingress_nginx - Nginx ingress controller deployed successfully. - ingress_nginx.py:deploy:34
+2026-03-18 04:10:45 - INFO - all.sregym.conductor - [ENV] Injected fault - conductor.py:_inject_fault:219
+2026-03-18 04:10:45 - DEBUG - all.sregym.conductor - Advancing to stage 'diagnosis' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-18 04:10:45 - INFO - all.sregym.conductor - [STAGE] Go to stage diagnosis - conductor.py:_advance_to_next_stage:286
+2026-03-18 04:10:45 - INFO - all.sregym.conductor - ✅ Deployment complete. Ready for submission. Current stage is: diagnosis - conductor.py:start_problem:436
+2026-03-18 04:10:45 - INFO - all.sregym.container_runner - Starting containerized agent [stratus-run]: python -m clients.stratus.stratus_agent.driver.driver 2>&1 | tee /logs/driver.lo... - container_runner.py:run_async:195
+2026-03-18 04:10:49 - DEBUG - all.sregym.conductor_api - API returns Problem ID: ingress_misroute - conductor_api.py:get_problem:181
+2026-03-18 04:10:49 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.hotel_reservation.HotelReservation object at 0x706785997740> - conductor_api.py:get_app:171
+2026-03-18 04:13:43 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit('The recommendation pod is restarting due to an unhandled application error (exit code 2) or misconfiguration, despite no clear errors in logs. The deployment lacks liveness/readiness probes, leading to repeated restarts by the kubelet.') - parser.py:parse:28
+2026-03-18 04:13:43 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 04:13:43 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 04:13:43 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ['The recommendation pod is restarting due to an unhandled application error (exit code 2) or misconfiguration, despite no clear errors in logs. The deployment lacks liveness/readiness probes, leading to repeated restarts by the kubelet.'], {} - parser.py:parse:34
+2026-03-18 04:13:43 - INFO - all.sregym.conductor - Evaluating stage 'diagnosis' - conductor.py:_submit_evaluate_and_advance:449 [sol = The recommendation pod is restarting due to an unhandled application error (exit code 2) or misconfiguration, despite no clear errors in logs. The deployment lacks liveness/readiness probes, leading to repeated restarts by the kubelet.]
+2026-03-18 04:13:43 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-18 04:13:44 - INFO - all.sregym.conductor - Start Eval for Diagnosis - conductor.py:_evaluate_diagnosis:235 [sol = The recommendation pod is restarting due to an unhandled application error (exit code 2) or misconfiguration, despite no clear errors in logs. The deployment lacks liveness/readiness probes, leading to repeated restarts by the kubelet.]
+2026-03-18 04:13:53 - INFO - all.sregym.conductor - [EVAL] Diagnosis Failed
+ TTL: 187.96783232688904 - conductor.py:_evaluate_diagnosis:239
+2026-03-18 04:13:53 - DEBUG - all.sregym.conductor - Advancing to stage 'mitigation' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-18 04:13:53 - INFO - all.sregym.conductor - [STAGE] Go to stage mitigation - conductor.py:_advance_to_next_stage:286
+2026-03-18 04:13:53 - INFO - all.sregym.conductor - Restarting noise manager for next stage... - conductor.py:_submit_evaluate_and_advance:470
+2026-03-18 04:14:00 - DEBUG - all.sregym.conductor_api - API returns Current stage: mitigation - conductor_api.py:get_status:161
+2026-03-18 04:14:00 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.hotel_reservation.HotelReservation object at 0x706785997740> - conductor_api.py:get_app:171
+2026-03-18 04:16:15 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit('{"root_causes": ["Missing liveness/readiness probes in the recommendation deployment leading to repeated restarts.", "Exit code 2 indicates an unhandled application error or misconfiguration in the recommendation service."]}') - parser.py:parse:28
+2026-03-18 04:16:15 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 04:16:15 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 04:16:15 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ['{"root_causes": ["Missing liveness/readiness probes in the recommendation deployment leading to repeated restarts.", "Exit code 2 indicates an unhandled application error or misconfiguration in the recommendation service."]}'], {} - parser.py:parse:34
+2026-03-18 04:16:15 - INFO - all.sregym.conductor - Evaluating stage 'mitigation' - conductor.py:_submit_evaluate_and_advance:449 [sol = {"root_causes": ["Missing liveness/readiness probes in the recommendation deployment leading to repeated restarts.", "Exit code 2 indicates an unhandled application error or misconfiguration in the recommendation service."]}]
+2026-03-18 04:16:15 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-18 04:16:15 - DEBUG - all.infra.k8s_proxy - Proxy: "GET /api/v1/namespaces/hotel-reservation/services/frontend HTTP/1.1" 200 - - k8s_proxy.py:log_message:193
+2026-03-18 04:16:15 - INFO - all.sregym.conductor - Start Eval for Mitigation - conductor.py:_evaluate_mitigation:250 [sol = {"root_causes": ["Missing liveness/readiness probes in the recommendation deployment leading to repeated restarts.", "Exit code 2 indicates an unhandled application error or misconfiguration in the recommendation service."]}]
+2026-03-18 04:16:16 - INFO - all.sregym.conductor - [EVAL] Mitigation Failed
+ TTM: 330.06995844841003 - conductor.py:_evaluate_mitigation:254
+2026-03-18 04:16:16 - INFO - all.sregym.conductor - [STAGE] Done, initiating teardown - conductor.py:_finish_problem:348
+2026-03-18 04:16:16 - INFO - all.sregym.conductor - [CLEANUP] Starting cleanup (fault recovery, undeploy, reconcile) - conductor.py:_cleanup_sync:304
+2026-03-18 04:16:16 - INFO - all.sregym.conductor - [STAGE] Teardown initiated, cleanup running in background - conductor.py:_finish_problem:357
+2026-03-18 04:16:16 - INFO - all.sregym.conductor - [CLEANUP] NoiseManager stopped - conductor.py:_cleanup_sync:310
+2026-03-18 04:16:16 - INFO - all.sregym.conductor - [CLEANUP] Recovering fault... - conductor.py:_cleanup_sync:316
+2026-03-18 04:16:16 - INFO - all.sregym.conductor - [CLEANUP] Fault recovered - conductor.py:_cleanup_sync:318
+2026-03-18 04:16:16 - INFO - all.sregym.conductor - [CLEANUP] Undeploying app... - conductor.py:_cleanup_sync:324
+2026-03-18 04:17:09 - INFO - all.infra.kubectl - Namespace 'hotel-reservation' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 04:17:11 - INFO - all.application - Deleted PersistentVolume pvc-b01dee23-bb6a-4687-ba39-4b196d3c1526: persistentvolume "pvc-b01dee23-bb6a-4687-ba39-4b196d3c1526" deleted - hotel_reservation.py:cleanup:102
+2026-03-18 04:17:12 - INFO - all.application - Deleted PersistentVolume pvc-b6e96407-c4eb-4e7b-a17a-4df98d657a62: persistentvolume "pvc-b6e96407-c4eb-4e7b-a17a-4df98d657a62" deleted - hotel_reservation.py:cleanup:102
+2026-03-18 04:17:13 - INFO - all.application - Deleted PersistentVolume pvc-d76465e5-4275-4e43-962f-072ccbf43291: persistentvolume "pvc-d76465e5-4275-4e43-962f-072ccbf43291" deleted - hotel_reservation.py:cleanup:102
+2026-03-18 04:17:13 - INFO - all.application - Deleted PersistentVolume pvc-e6c239b1-0808-43fb-aa3c-b2ce9af24b7c: persistentvolume "pvc-e6c239b1-0808-43fb-aa3c-b2ce9af24b7c" deleted - hotel_reservation.py:cleanup:102
+2026-03-18 04:17:15 - INFO - all.application - Deleted PersistentVolume pvc-ed537f71-c058-4fdb-8ed6-49f273418b81: persistentvolume "pvc-ed537f71-c058-4fdb-8ed6-49f273418b81" deleted - hotel_reservation.py:cleanup:102
+2026-03-18 04:17:20 - INFO - all.sregym.conductor - [CLEANUP] App undeployed - conductor.py:_cleanup_sync:326
+2026-03-18 04:17:20 - INFO - all.sregym.conductor - [CLEANUP] Reconciling cluster state to baseline... - conductor.py:_cleanup_sync:330
+2026-03-18 04:17:20 - INFO - all.infra.cluster_state - Reconciling cluster to baseline state... - cluster_state.py:reconcile_to_baseline:168
+2026-03-18 04:17:20 - INFO - all.infra.cluster_state - Deleting unexpected namespace: openebs - cluster_state.py:reconcile_to_baseline:187
+2026-03-18 04:17:37 - INFO - all.infra.kubectl - Namespace 'openebs' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 04:17:37 - INFO - all.infra.cluster_state - Deleting unexpected namespace: observe - cluster_state.py:reconcile_to_baseline:187
+2026-03-18 04:18:27 - INFO - all.infra.kubectl - Namespace 'observe' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 04:18:27 - INFO - all.infra.cluster_state - Deleting unexpected namespace: ingress-nginx - cluster_state.py:reconcile_to_baseline:187
+2026-03-18 04:18:59 - INFO - all.sregym.conductor - Stopping Kubernetes API filtering proxy... - conductor.py:stop_k8s_proxy:110
+2026-03-18 04:18:59 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy stopped - k8s_proxy.py:stop:407
+2026-03-18 04:18:59 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-18 04:18:59 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

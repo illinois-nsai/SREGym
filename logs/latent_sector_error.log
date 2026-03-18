@@ -1,0 +1,412 @@
+[94mINFO - __main__ - 🔧 Config — agent: stratus, agent_model: qwen-8b, judge_model: qwen-8b[0m
+[94mINFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'...[0m
+==> Assembling build context...
+==> sregym modules copied (27 files)
+==> Building Docker image...
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 3.41kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 0.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [ 1/16] FROM docker.io/library/ubuntu:22.04@sha256:445586e41c1de7dfda82d2637f5ff688deea9eb5f5812f8c145afacc35b9f0db
+#4 resolve docker.io/library/ubuntu:22.04@sha256:445586e41c1de7dfda82d2637f5ff688deea9eb5f5812f8c145afacc35b9f0db done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 467.65kB 0.0s done
+#5 DONE 0.0s
+
+#6 [11/16] COPY llm_backend/    /opt/sregym/llm_backend/
+#6 CACHED
+
+#7 [ 5/16] RUN python3 -m ensurepip --upgrade     && python3 -m pip install --upgrade pip     && ln -sf /usr/bin/python3 /usr/bin/python
+#7 CACHED
+
+#8 [ 6/16] RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"     && chmod +x kubectl && mv kubectl /usr/local/bin/
+#8 CACHED
+
+#9 [10/16] COPY logger/         /opt/sregym/logger/
+#9 CACHED
+
+#10 [ 4/16] RUN apt-get update     && apt-get install -y --no-install-recommends         git wget jq         nodejs         python3.12 python3.12-venv python3.12-dev     && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1     && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [ 2/16] RUN apt-get update     && apt-get install -y --no-install-recommends         ca-certificates curl gnupg software-properties-common     && rm -rf /var/lib/apt/lists/*
+#11 CACHED
+
+#12 [12/16] COPY sregym/         /opt/sregym/sregym/
+#12 CACHED
+
+#13 [ 3/16] RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -     && add-apt-repository ppa:deadsnakes/ppa
+#13 CACHED
+
+#14 [ 8/16] RUN python3 -m pip install --break-system-packages -r /tmp/requirements-container.txt
+#14 CACHED
+
+#15 [ 7/16] COPY requirements-container.txt /tmp/requirements-container.txt
+#15 CACHED
+
+#16 [ 9/16] COPY clients/        /opt/sregym/clients/
+#16 CACHED
+
+#17 [13/16] COPY install-scripts/ /opt/sregym/install-scripts/
+#17 CACHED
+
+#18 [14/16] RUN chmod +x /opt/sregym/install-scripts/*.sh
+#18 DONE 0.1s
+
+#19 [15/16] RUN mkdir -p /logs
+#19 DONE 0.2s
+
+#20 [16/16] WORKDIR /logs
+#20 DONE 0.0s
+
+#21 exporting to image
+#21 exporting layers
+#21 exporting layers 2.7s done
+#21 writing image sha256:d4a08cd5956f1f7ab5559242d310341bd9ad800dcde5618cf0be56d4832f6963 done
+#21 naming to docker.io/library/sregym-agent-base:latest done
+#21 DONE 2.7s
+==> Cleaning up build context...
+==> Done! Image: sregym-agent-base:latest
+[94mINFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully.[0m
+╭───────────────── SREGym API Server ──────────────────╮
+│  ____  ____  _____ ____                              │
+│ / ___||  _ \| ____/ ___|_   _ _ __ ___               │
+│ \___ \| |_) |  _|| |  _| | | | '_ ` _ \              │
+│  ___) |  _ <| |__| |_| | |_| | | | | | |             │
+│ |____/|_| \_\_____\____|\__, |_| |_| |_|             │
+│                         |___/                        │
+│                                                      │
+╰──────────────── http://0.0.0.0:8000 ─────────────────╯
+Available Endpoints                                     
+
+ • POST /submit: { "solution": "<your-solution>" } →    
+   grades the current stage                             
+ • GET /status: returns { "stage": "setup" | "diagnosis"
+   | "mitigation" | "tearing_down" | "done" }           
+/home/htl/SREGym/.venv/lib/python3.12/site-packages/websockets/legacy/__init__.py:6: DeprecationWarning: websockets.legacy is deprecated; see https://websockets.readthedocs.io/en/stable/howto/upgrade.html for upgrade instructions
+  warnings.warn(  # deprecated in 14.0 - 2024-11-09
+/home/htl/SREGym/.venv/lib/python3.12/site-packages/uvicorn/protocols/websockets/websockets_impl.py:17: DeprecationWarning: websockets.server.WebSocketServerProtocol is deprecated
+  from websockets.server import WebSocketServerProtocol
+INFO:     Started server process [3326279]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+[03:48:07] Starting agent now: stratus        main.py:67
+           🔒 Starting Kubernetes API proxy   main.py:71
+           to hide chaos namespaces...                  
+[94mINFO - all.sregym.conductor - Starting Kubernetes API filtering proxy...[0m
+[94mINFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443[0m
+[94mINFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'}[0m
+[94mINFO - all.infra.k8s_proxy - Hidden labels: {'app': {'locust-fetcher', 'load-generator'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}}[0m
+[94mINFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig[0m
+[94mINFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig[0m
+           🎯 Running single problem:         main.py:85
+           latent_sector_error                          
+                                             main.py:128
+           🔍 Starting problem:                         
+           latent_sector_error (Attempt 1 of            
+           1)                                           
+[94mINFO - all.sregym.conductor - [Session Start] Problem ID: latent_sector_error[0m
+[94mINFO - all.sregym.conductor - [STAGE] Start testing on problem: latent_sector_error[0m
+[94mINFO - all.sregym.conductor - Fixing Kubernetes... to normal state.[0m
+[94mINFO - all.sregym.conductor - [FIX] Imbalance leftover if any[0m
+[94mINFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any[0m
+[94mINFO - paramiko.transport - Connected (version 2.0, client OpenSSH_9.6p1)[0m
+[94mINFO - paramiko.transport - Authentication (publickey) successful![0m
+[94mINFO - paramiko.transport - Connected (version 2.0, client OpenSSH_9.6p1)[0m
+[94mINFO - paramiko.transport - Authentication (publickey) successful![0m
+[94mINFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any[0m
+[94mINFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any[0m
+[94mINFO - all.sregym.conductor - Fix Kubernetes completed.[0m
+[94mINFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem.[0m
+[94mINFO - all.sregym.conductor - ⏩ Mitigation oracle is not attached. Skipping mitigation.[0m
+[94mINFO - all.sregym.conductor - Undeploying app leftovers...[0m
+Starting kubelet on apt032.apt.emulab.net...
+Kubelet started on apt032.apt.emulab.net
+Starting kubelet on apt035.apt.emulab.net...
+Kubelet started on apt035.apt.emulab.net
+Waiting for worker nodes {'node1.htliang2-agent.insai-pg0.apt.emulab.net', 'node2.htliang2-agent.insai-pg0.apt.emulab.net'} to become Ready...
+All worker nodes are Ready.
+No NXDOMAIN templates found in CoreDNS config; nothing to do
+[dm-flakey] ✅ Removed dm-flakey infrastructure on node0.htliang2-agent.insai-pg0.apt.emulab.net
+[dm-flakey] ✅ Removed dm-flakey infrastructure on node1.htliang2-agent.insai-pg0.apt.emulab.net
+[dm-flakey] ⚠️ Could not remove dm-flakey on node2.htliang2-agent.insai-pg0.apt.emulab.net (may not exist): No running Khaos pod found on node node2.htliang2-agent.insai-pg0.apt.emulab.net
+[03:48:12] Waiting for namespace          kubectl.py:219
+           deletion...                                  
+[03:49:15] Namespace 'hotel-reservation'  kubectl.py:227
+           has been deleted.                            
+[94mINFO - all.infra.kubectl - Namespace 'hotel-reservation' deleted successfully.[0m
+[03:49:15] Waiting for namespace          kubectl.py:219
+           deletion...                                  
+           Namespace 'hotel-reservation'  kubectl.py:227
+           has been deleted.                            
+[94mINFO - all.application - Deleted PersistentVolume pvc-ca58b61a-736a-4bf4-bc3a-82ba3540f417: persistentvolume "pvc-ca58b61a-736a-4bf4-bc3a-82ba3540f417" deleted[0m
+[03:49:21] No jobs found with label       kubectl.py:306
+           'job=workload' in namespace                  
+           'hotel-reservation'.                         
+[94mINFO - all.sregym.conductor - App leftovers undeployed.[0m
+[94mINFO - all.sregym.conductor - Deploying app...[0m
+[94mINFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json[0m
+[94mINFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state[0m
+[94mINFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server…[0m
+[03:49:22] Waiting for all pods in        kubectl.py:176
+           namespace 'kube-system' to be                
+           ready...                                     
+[03:49:32] All pods in namespace          kubectl.py:202
+           'kube-system' are ready.                     
+[94mINFO - all.sregym.conductor - [DEPLOY] Deploying Khaos DaemonSet...[0m
+[94mINFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS…[0m
+[03:49:35] Waiting for all pods in        kubectl.py:176
+           namespace 'openebs' to be                    
+           ready...                                     
+           All pods in namespace          kubectl.py:202
+           'openebs' are ready.                         
+[94mINFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus…[0m
+[92mWARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment.[0m
+[94mINFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger…[0m
+[94mINFO - all.sregym.jaeger - Jaeger deployed successfully.[0m
+[94mINFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector…[0m
+[94mINFO - all.sregym.otel_collector - OTel Collector deployed successfully.[0m
+[94mINFO - all.sregym.conductor - [DEPLOY] Deploying Loki…[0m
+[92mWARNING - all.infra.loki - Loki is already running. Skipping redeployment.[0m
+[92mWARNING - all.infra.loki - Promtail is already running. Skipping redeployment.[0m
+[94mINFO - all.sregym.conductor - [DEPLOY] Deploying MCP server…[0m
+Setting up OpenEBS LocalPV-Device…
+[03:49:38] Waiting for all pods in        kubectl.py:176
+           namespace 'sregym' to be                     
+           ready...                                     
+           All pods in namespace 'sregym' kubectl.py:202
+           are ready.                                   
+[94mINFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set.[0m
+[94mINFO - all.sregym.mcp_server - MCP server deployed successfully.[0m
+[94mINFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki[0m
+[94mINFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload[0m
+[94mINFO - all.application - Deploying Kubernetes configurations in namespace: hotel-reservation[0m
+[94mINFO - all.application - Namespace hotel-reservation not found. Creating namespace.[0m
+[94mINFO - all.application - Namespace hotel-reservation created successfully: namespace/hotel-reservation created
+[0m
+[94mINFO - all.infra.kubectl - ConfigMap 'mongo-rate-script' created in namespace 'hotel-reservation'[0m
+[94mINFO - all.infra.kubectl - ConfigMap 'mongo-geo-script' created in namespace 'hotel-reservation'[0m
+[94mINFO - all.infra.kubectl - ConfigMap 'failure-admin-rate' created in namespace 'hotel-reservation'[0m
+[94mINFO - all.infra.kubectl - ConfigMap 'failure-admin-geo' created in namespace 'hotel-reservation'[0m
+[03:50:28] Waiting for all pods in        kubectl.py:176
+           namespace 'hotel-reservation'                
+           to be ready...                               
+[03:52:04] All pods in namespace          kubectl.py:202
+           'hotel-reservation' are ready.               
+[94mINFO - all.sregym.conductor - [ENV] Deploy application: Hotel Reservation[0m
+[94mINFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local[0m
+[94mINFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local[0m
+[94mINFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local[0m
+[94mINFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local[0m
+[94mINFO - all.infra.workload - Start Workload with Wrk2[0m
+[94mINFO - all.infra.workload - Checking for existing ConfigMap 'wrk2-payload-script'...[0m
+[94mINFO - all.infra.workload - Creating ConfigMap 'wrk2-payload-script'...[0m
+[94mINFO - all.infra.workload - ConfigMap 'wrk2-payload-script' created successfully.[0m
+[94mINFO - all.infra.workload - Job created: wrk2-job[0m
+[94mINFO - all.sregym.conductor - [ENV] Start workload[0m
+[94mINFO - all.sregym.conductor - App deployed.[0m
+[94mINFO - sregym.generators.noise.manager - NoiseManager context updated: dict_keys(['namespace', 'app_name'])[0m
+[94mINFO - sregym.generators.noise.manager - Background noise generator started.[0m
+Injecting fault 'latent_sector_error' into 1 PIDs: 2357599
+
+--- Processing PID 2357599 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2357599
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2357599
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2357599
+Successfully processed PID 2357599
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2361780
+
+--- Processing PID 2361780 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2361780
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2361780
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2361780
+Successfully processed PID 2361780
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2358188
+
+--- Processing PID 2358188 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2358188
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2358188
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2358188
+Successfully processed PID 2358188
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2358673
+
+--- Processing PID 2358673 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2358673
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2358673
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2358673
+Successfully processed PID 2358673
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2359181
+
+--- Processing PID 2359181 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2359181
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2359181
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2359181
+Successfully processed PID 2359181
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2360549
+
+--- Processing PID 2360549 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2360549
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2360549
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2360549
+Successfully processed PID 2360549
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2360778
+
+--- Processing PID 2360778 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2360778
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2360778
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2360778
+Successfully processed PID 2360778
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2362121
+
+--- Processing PID 2362121 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2362121
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2362121
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2362121
+Successfully processed PID 2362121
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2362438
+
+--- Processing PID 2362438 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2362438
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2362438
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2362438
+Successfully processed PID 2362438
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2362829
+
+--- Processing PID 2362829 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2362829
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2362829
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2362829
+Successfully processed PID 2362829
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2362910
+
+--- Processing PID 2362910 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2362910
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2362910
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2362910
+Successfully processed PID 2362910
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2363695
+
+--- Processing PID 2363695 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2363695
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2363695
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2363695
+Successfully processed PID 2363695
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2362674
+
+--- Processing PID 2362674 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2362674
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2362674
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2362674
+Successfully processed PID 2362674
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2363181
+
+--- Processing PID 2363181 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2363181
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2363181
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2363181
+Successfully processed PID 2363181
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2363265
+
+--- Processing PID 2363265 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2363265
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2363265
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2363265
+Successfully processed PID 2363265
+
+Completed fault injection for all 1 PIDs
+Injecting fault 'latent_sector_error' into 1 PIDs: 2363777
+
+--- Processing PID 2363777 ---
+Pinned latent_sector_error read link to /sys/fs/bpf/khaos-kprobe-lse-read-latent_sector_error_2363777
+Pinned latent_sector_error pread link to /sys/fs/bpf/khaos-kprobe-lse-pread-latent_sector_error_2363777
+Injected latent_sector_error fault 'latent_sector_error' (read/pread64, error_rate=30%, errno=-5) into PID 2363777
+Successfully processed PID 2363777
+
+Completed fault injection for all 1 PIDs
+[95mERROR - __main__ - Driver thread crashed
+Traceback (most recent call last):
+  File "/home/htl/SREGym/main.py", line 246, in _run_driver_and_shutdown
+    results = driver_loop(
+              ^^^^^^^^^^^^
+  File "/home/htl/SREGym/main.py", line 232, in driver_loop
+    return asyncio.run(driver())
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/main.py", line 130, in driver
+    result = await conductor.start_problem()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/sregym/conductor/conductor.py", line 431, in start_problem
+    self._advance_to_next_stage(start_index=0)
+  File "/home/htl/SREGym/sregym/conductor/conductor.py", line 277, in _advance_to_next_stage
+    self._inject_fault()
+  File "/home/htl/SREGym/sregym/conductor/conductor.py", line 218, in _inject_fault
+    problem.inject_fault()
+  File "/home/htl/SREGym/sregym/utils/decorators.py", line 4, in wrapper
+    result = method(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/sregym/conductor/problems/khaos_faults.py", line 225, in inject_fault
+    self.target_node = self.injector.inject_node(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/sregym/generators/fault/inject_hw.py", line 58, in inject_node
+    self.inject(target_pods, fault_type, params)
+  File "/home/htl/SREGym/sregym/generators/fault/inject_hw.py", line 31, in inject
+    host_pid = self._get_host_pid_on_node(node, container_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/htl/SREGym/sregym/generators/fault/inject_hw.py", line 136, in _get_host_pid_on_node
+    raise RuntimeError(
+RuntimeError: Failed to resolve host PID for container 85c522618a047fdb7f5c29165b32b7bffffde74e8b94195dad67ff7d70802625 on node node0.htliang2-agent.insai-pg0.apt.emulab.net (proc, cgroups, cri all failed)[0m
+[92mWARNING - all.sregym.conductor_api - Shutting down API server...[0m
+INFO:     Shutting down
+INFO:     Finished server process [3326279]
+[92mWARNING - __main__ - ⚠️ No results to write.[0m
+== Fault Injection: latent_sector_error ==
+Node node0.htliang2-agent.insai-pg0.apt.emulab.net has 17 pods
+Selected target node: node0.htliang2-agent.insai-pg0.apt.emulab.net
+Found 17 pods on node node0.htliang2-agent.insai-pg0.apt.emulab.net: hotel-reservation/frontend-6df8475df4-7l6cl, hotel-reservation/geo-57c7bd6d5c-tts79, hotel-reservation/jaeger-5b9775bd94-fppkk, hotel-reservation/memcached-profile-6849578b8-4h4c9, hotel-reservation/memcached-rate-948594dfd-pggv2, hotel-reservation/memcached-reserve-68dbb57476-ql8mv, hotel-reservation/mongodb-geo-8cb7d9f5b-9fvdl, hotel-reservation/mongodb-profile-775dfd4bd7-b78h6, hotel-reservation/mongodb-rate-bfbcf4587-gvvpj, hotel-reservation/mongodb-recommendation-674dddbcdf-8lcmd, hotel-reservation/mongodb-reservation-6cdf69dcc-79kss, hotel-reservation/mongodb-user-6dcf4877-pht4r, hotel-reservation/profile-69cb98cb67-752x7, hotel-reservation/rate-6fff88f6f5-v8572, hotel-reservation/recommendation-64754c9c4f-m2pvp, hotel-reservation/reservation-7bb77b596b-s94vf, hotel-reservation/user-6548d868cd-mfcz9

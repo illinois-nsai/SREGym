@@ -1,0 +1,79 @@
+2026-03-17 05:31:35 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x7977ffff26c0> - conductor_api.py:run_api:191
+2026-03-17 05:31:35 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-17 05:31:35 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-17 05:31:36 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:102
+2026-03-17 05:31:36 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-17 05:31:36 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'} - k8s_proxy.py:start:398
+2026-03-17 05:31:36 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'load-generator', 'locust-fetcher'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-17 05:31:36 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-17 05:31:36 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:105
+2026-03-17 05:31:36 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:385
+2026-03-17 05:31:36 - INFO - all.sregym.conductor - [Session Start] Problem ID: faulty_image_correlated - conductor.py:start_problem:387
+2026-03-17 05:31:36 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: faulty_image_correlated - conductor.py:start_problem:388
+2026-03-17 05:31:36 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:514
+2026-03-17 05:31:36 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:515
+2026-03-17 05:31:36 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:522
+2026-03-17 05:31:39 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:526
+2026-03-17 05:31:39 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:533
+2026-03-17 05:31:39 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:539
+2026-03-17 05:31:39 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:132
+2026-03-17 05:31:39 - INFO - all.sregym.conductor - Undeploying app leftovers... - conductor.py:start_problem:403
+2026-03-17 05:32:25 - INFO - all.infra.kubectl - Namespace 'hotel-reservation' deleted successfully. - kubectl.py:delete_namespace:485
+2026-03-17 05:32:26 - INFO - all.application - Deleted PersistentVolume pvc-21eec7b4-a229-4e75-94d8-874a7e2d9814: persistentvolume "pvc-21eec7b4-a229-4e75-94d8-874a7e2d9814" deleted - hotel_reservation.py:cleanup:102
+2026-03-17 05:32:27 - INFO - all.application - Deleted PersistentVolume pvc-23351c32-000b-4c75-bd0e-7d595002b1f1: persistentvolume "pvc-23351c32-000b-4c75-bd0e-7d595002b1f1" deleted - hotel_reservation.py:cleanup:102
+2026-03-17 05:32:27 - INFO - all.application - Deleted PersistentVolume pvc-6c2dd3b8-acf3-4275-bd9d-d2ebf809cc97: persistentvolume "pvc-6c2dd3b8-acf3-4275-bd9d-d2ebf809cc97" deleted - hotel_reservation.py:cleanup:102
+2026-03-17 05:32:29 - INFO - all.application - Deleted PersistentVolume pvc-a60309ea-3924-4fa8-93ea-96a73ec2db29: persistentvolume "pvc-a60309ea-3924-4fa8-93ea-96a73ec2db29" deleted - hotel_reservation.py:cleanup:102
+2026-03-17 05:32:29 - INFO - all.application - Deleted PersistentVolume pvc-ce37a771-7bb3-4ef7-b7ae-fe1d4d018f80: persistentvolume "pvc-ce37a771-7bb3-4ef7-b7ae-fe1d4d018f80" deleted - hotel_reservation.py:cleanup:102
+2026-03-17 05:32:30 - INFO - all.application - Deleted PersistentVolume pvc-ce9b59bf-2e34-4399-9e44-f41f8e214852: Error from server (NotFound): persistentvolumes "pvc-ce9b59bf-2e34-4399-9e44-f41f8e214852" not found - hotel_reservation.py:cleanup:102
+2026-03-17 05:32:35 - INFO - all.sregym.conductor - App leftovers undeployed. - conductor.py:start_problem:405
+2026-03-17 05:32:35 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:406
+2026-03-17 05:32:35 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-17 05:32:35 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:551
+2026-03-17 05:32:35 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:557
+2026-03-17 05:32:43 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:576
+2026-03-17 05:32:45 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:599
+2026-03-17 05:32:45 - WARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment. - prometheus.py:deploy:71
+2026-03-17 05:32:45 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:602
+2026-03-17 05:32:46 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-17 05:32:46 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:605
+2026-03-17 05:32:47 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-17 05:32:47 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:609
+2026-03-17 05:32:47 - WARNING - all.infra.loki - Loki is already running. Skipping redeployment. - loki.py:deploy:87
+2026-03-17 05:32:48 - WARNING - all.infra.loki - Promtail is already running. Skipping redeployment. - loki.py:_deploy_promtail:170
+2026-03-17 05:32:48 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:614
+2026-03-17 05:32:48 - DEBUG - all.sregym.mcp_server - Port 9954 is already in use. Attempt 1 of 3. Retrying in 3 seconds... - mcp_server.py:start_port_forward:45
+2026-03-17 05:32:54 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-17 05:32:54 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-17 05:32:54 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:617
+2026-03-17 05:32:54 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:629
+2026-03-17 05:32:54 - INFO - all.application - Deploying Kubernetes configurations in namespace: hotel-reservation - hotel_reservation.py:deploy:78
+2026-03-17 05:32:54 - INFO - all.application - Namespace hotel-reservation not found. Creating namespace. - base.py:create_namespace:73
+2026-03-17 05:32:55 - INFO - all.application - Namespace hotel-reservation created successfully: namespace/hotel-reservation created
+ - base.py:create_namespace:76
+2026-03-17 05:32:55 - INFO - all.infra.kubectl - ConfigMap 'mongo-rate-script' created in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:443
+2026-03-17 05:32:55 - INFO - all.infra.kubectl - ConfigMap 'mongo-geo-script' created in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:443
+2026-03-17 05:32:55 - INFO - all.infra.kubectl - ConfigMap 'failure-admin-rate' created in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:443
+2026-03-17 05:32:55 - INFO - all.infra.kubectl - ConfigMap 'failure-admin-geo' created in namespace 'hotel-reservation' - kubectl.py:create_or_update_configmap:443
+2026-03-17 05:35:09 - INFO - all.sregym.conductor - [ENV] Deploy application: Hotel Reservation - conductor.py:deploy_app:631
+2026-03-17 05:35:09 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 05:35:09 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 05:35:10 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 05:35:10 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 05:35:10 - INFO - all.infra.workload - Start Workload with Wrk2 - wrk2.py:start:322
+2026-03-17 05:35:10 - INFO - all.infra.workload - Checking for existing ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:72
+2026-03-17 05:35:10 - INFO - all.infra.workload - Creating ConfigMap 'wrk2-payload-script'... - wrk2.py:create_configmap:81
+2026-03-17 05:35:10 - INFO - all.infra.workload - ConfigMap 'wrk2-payload-script' created successfully. - wrk2.py:create_configmap:83
+2026-03-17 05:35:11 - INFO - all.infra.workload - Job created: wrk2-job - wrk2.py:create_wrk_job:133
+2026-03-17 05:35:11 - INFO - all.sregym.conductor - [ENV] Start workload - conductor.py:deploy_app:637
+2026-03-17 05:35:11 - INFO - all.sregym.conductor - App deployed. - conductor.py:start_problem:408
+2026-03-17 05:35:23 - INFO - all.sregym.conductor - [ENV] Injected fault - conductor.py:_inject_fault:218
+2026-03-17 05:35:23 - DEBUG - all.sregym.conductor - Advancing to stage 'diagnosis' and waiting for agent. - conductor.py:_advance_to_next_stage:282
+2026-03-17 05:35:23 - INFO - all.sregym.conductor - [STAGE] Go to stage diagnosis - conductor.py:_advance_to_next_stage:285
+2026-03-17 05:35:23 - INFO - all.sregym.conductor - ✅ Deployment complete. Ready for submission. Current stage is: diagnosis - conductor.py:start_problem:429
+2026-03-17 05:35:23 - INFO - all.sregym.container_runner - Starting containerized agent [stratus-run]: python -m clients.stratus.stratus_agent.driver.driver 2>&1 | tee /logs/driver.lo... - container_runner.py:run_async:195
+2026-03-17 05:35:27 - DEBUG - all.sregym.conductor_api - API returns Problem ID: faulty_image_correlated - conductor_api.py:get_problem:181
+2026-03-17 05:35:27 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.hotel_reservation.HotelReservation object at 0x7977ffdd7440> - conductor_api.py:get_app:171
+2026-03-17 05:38:00 - INFO - all.sregym.conductor - Stopping Kubernetes API filtering proxy... - conductor.py:stop_k8s_proxy:109
+2026-03-17 05:38:01 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy stopped - k8s_proxy.py:stop:407
+2026-03-17 05:38:01 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-17 05:38:01 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

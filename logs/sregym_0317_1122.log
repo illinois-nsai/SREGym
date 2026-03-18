@@ -1,0 +1,91 @@
+2026-03-17 11:22:32 - INFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'... - container_runner.py:build_image:221
+2026-03-17 11:22:36 - INFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully. - container_runner.py:build_image:238
+2026-03-17 11:22:36 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x71628c16b890> - conductor_api.py:run_api:191
+2026-03-17 11:22:36 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-17 11:22:36 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-17 11:22:37 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:103
+2026-03-17 11:22:37 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-17 11:22:37 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'khaos', 'chaos-mesh'} - k8s_proxy.py:start:398
+2026-03-17 11:22:37 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'locust-fetcher', 'load-generator'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-17 11:22:37 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-17 11:22:37 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:106
+2026-03-17 11:22:37 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:389
+2026-03-17 11:22:37 - INFO - all.sregym.conductor - [Session Start] Problem ID: gc_capacity_degradation - conductor.py:start_problem:391
+2026-03-17 11:22:37 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: gc_capacity_degradation - conductor.py:start_problem:392
+2026-03-17 11:22:37 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:521
+2026-03-17 11:22:37 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:522
+2026-03-17 11:22:37 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:529
+2026-03-17 11:22:40 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:533
+2026-03-17 11:22:40 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:540
+2026-03-17 11:22:41 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:546
+2026-03-17 11:22:41 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:133
+2026-03-17 11:22:41 - INFO - all.sregym.conductor - ⏩ Mitigation oracle is not attached. Skipping mitigation. - conductor.py:_build_stage_sequence:208
+2026-03-17 11:22:41 - INFO - all.sregym.conductor - Undeploying app leftovers... - conductor.py:start_problem:410
+2026-03-17 11:23:26 - INFO - all.infra.kubectl - Namespace 'blueprint-hotel-reservation' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-17 11:23:26 - INFO - all.sregym.conductor - App leftovers undeployed. - conductor.py:start_problem:412
+2026-03-17 11:23:26 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:413
+2026-03-17 11:23:26 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-17 11:23:26 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:558
+2026-03-17 11:23:26 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:564
+2026-03-17 11:23:36 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:583
+2026-03-17 11:23:38 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:606
+2026-03-17 11:23:38 - WARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment. - prometheus.py:deploy:71
+2026-03-17 11:23:38 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:609
+2026-03-17 11:23:39 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-17 11:23:39 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:612
+2026-03-17 11:23:40 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-17 11:23:40 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:616
+2026-03-17 11:23:40 - WARNING - all.infra.loki - Loki is already running. Skipping redeployment. - loki.py:deploy:87
+2026-03-17 11:23:40 - WARNING - all.infra.loki - Promtail is already running. Skipping redeployment. - loki.py:_deploy_promtail:170
+2026-03-17 11:23:40 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:621
+2026-03-17 11:23:41 - DEBUG - all.sregym.mcp_server - Port 9954 is already in use. Attempt 1 of 3. Retrying in 3 seconds... - mcp_server.py:start_port_forward:45
+2026-03-17 11:23:47 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-17 11:23:47 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-17 11:23:47 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:624
+2026-03-17 11:23:47 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:636
+2026-03-17 11:23:47 - INFO - all.application - Deploying Kubernetes configurations in namespace: blueprint-hotel-reservation - blueprint_hotel_reservation.py:deploy:30
+2026-03-17 11:23:47 - INFO - all.application - Namespace blueprint-hotel-reservation not found. Creating namespace. - base.py:create_namespace:73
+2026-03-17 11:23:47 - INFO - all.application - Namespace blueprint-hotel-reservation created successfully: namespace/blueprint-hotel-reservation created
+ - base.py:create_namespace:76
+2026-03-17 11:24:29 - INFO - all.sregym.conductor - [ENV] Deploy application: Blueprint Hotel Reservation - conductor.py:deploy_app:638
+2026-03-17 11:24:30 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'blueprint-hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 11:24:30 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'blueprint-hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 11:24:31 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'blueprint-hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 11:24:31 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'blueprint-hotel-reservation' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-17 11:24:31 - INFO - all.sregym.conductor - [ENV] Start workload - conductor.py:deploy_app:644
+2026-03-17 11:24:31 - INFO - all.sregym.conductor - App deployed. - conductor.py:start_problem:415
+2026-03-17 11:26:01 - INFO - all.infra.workload - Start Workload with Blueprint Hotel Worklnload Manager - blueprint_hotel_work.py:start:304
+2026-03-17 11:26:01 - INFO - all.infra.workload - Checking for existing ConfigMap 'bhotelwrk-wlgen-env'... - blueprint_hotel_work.py:create_configmap:47
+2026-03-17 11:26:01 - INFO - all.infra.workload - ConfigMap 'bhotelwrk-wlgen-env' deleted. - blueprint_hotel_work.py:create_configmap:49
+2026-03-17 11:26:01 - INFO - all.infra.workload - Creating ConfigMap 'bhotelwrk-wlgen-env'... - blueprint_hotel_work.py:create_configmap:56
+2026-03-17 11:26:01 - INFO - all.infra.workload - ConfigMap 'bhotelwrk-wlgen-env' created successfully. - blueprint_hotel_work.py:create_configmap:58
+2026-03-17 11:26:01 - INFO - all.infra.workload - Job 'bhotelwrk-wlgen-job' already exists. Deleting it... - blueprint_hotel_work.py:create_bhotelwrk_job:71
+2026-03-17 11:26:03 - INFO - all.infra.workload - Job created: bhotelwrk-wlgen-job - blueprint_hotel_work.py:create_bhotelwrk_job:85
+2026-03-17 11:34:33 - INFO - all.sregym.conductor - [ENV] Injected fault - conductor.py:_inject_fault:219
+2026-03-17 11:34:33 - DEBUG - all.sregym.conductor - Advancing to stage 'diagnosis' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-17 11:34:33 - INFO - all.sregym.conductor - [STAGE] Go to stage diagnosis - conductor.py:_advance_to_next_stage:286
+2026-03-17 11:34:33 - INFO - all.sregym.conductor - ✅ Deployment complete. Ready for submission. Current stage is: diagnosis - conductor.py:start_problem:436
+2026-03-17 11:34:33 - INFO - all.sregym.container_runner - Starting containerized agent [stratus-run]: python -m clients.stratus.stratus_agent.driver.driver 2>&1 | tee /logs/driver.lo... - container_runner.py:run_async:195
+2026-03-17 11:34:36 - DEBUG - all.sregym.conductor_api - API returns Problem ID: gc_capacity_degradation - conductor_api.py:get_problem:181
+2026-03-17 11:34:36 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.blueprint_hotel_reservation.BlueprintHotelReservation object at 0x71628c2e35f0> - conductor_api.py:get_app:171
+2026-03-17 11:37:46 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit("The payment service's pods are not running, likely due to misconfiguration or deployment errors, leading to failures in processing reservations. This directly impacts the reservation workflow, as payment is a critical step. The root cause is the absence of active payment service pods, preventing successful transaction processing.") - parser.py:parse:28
+2026-03-17 11:37:46 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-17 11:37:46 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-17 11:37:46 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ["The payment service's pods are not running, likely due to misconfiguration or deployment errors, leading to failures in processing reservations. This directly impacts the reservation workflow, as payment is a critical step. The root cause is the absence of active payment service pods, preventing successful transaction processing."], {} - parser.py:parse:34
+2026-03-17 11:37:46 - INFO - all.sregym.conductor - Evaluating stage 'diagnosis' - conductor.py:_submit_evaluate_and_advance:449 [sol = The payment service's pods are not running, likely due to misconfiguration or deployment errors, leading to failures in processing reservations. This directly impacts the reservation workflow, as payment is a critical step. The root cause is the absence of active payment service pods, preventing successful transaction processing.]
+2026-03-17 11:37:46 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-17 11:37:47 - INFO - all.sregym.conductor - Start Eval for Diagnosis - conductor.py:_evaluate_diagnosis:235 [sol = The payment service's pods are not running, likely due to misconfiguration or deployment errors, leading to failures in processing reservations. This directly impacts the reservation workflow, as payment is a critical step. The root cause is the absence of active payment service pods, preventing successful transaction processing.]
+2026-03-17 11:37:54 - INFO - all.sregym.conductor - [EVAL] Diagnosis Failed
+ TTL: 201.80666422843933 - conductor.py:_evaluate_diagnosis:239
+2026-03-17 11:37:54 - INFO - all.sregym.conductor - [STAGE] Done, initiating teardown - conductor.py:_finish_problem:348
+2026-03-17 11:37:54 - INFO - all.sregym.conductor - [CLEANUP] Starting cleanup (fault recovery, undeploy, reconcile) - conductor.py:_cleanup_sync:304
+2026-03-17 11:37:54 - INFO - all.sregym.conductor - [STAGE] Teardown initiated, cleanup running in background - conductor.py:_finish_problem:357
+2026-03-17 11:37:54 - INFO - all.sregym.conductor - [CLEANUP] NoiseManager stopped - conductor.py:_cleanup_sync:310
+2026-03-17 11:37:54 - INFO - all.sregym.conductor - [CLEANUP] Recovering fault... - conductor.py:_cleanup_sync:316
+2026-03-17 11:37:57 - DEBUG - all.sregym.conductor_api - API returns Current stage: tearing_down - conductor_api.py:get_status:161
+2026-03-17 11:39:25 - INFO - all.sregym.conductor - [CLEANUP] Fault recovered - conductor.py:_cleanup_sync:318
+2026-03-17 11:39:25 - INFO - all.sregym.conductor - [CLEANUP] Undeploying app... - conductor.py:_cleanup_sync:324
+2026-03-17 11:39:59 - INFO - all.sregym.conductor - Stopping Kubernetes API filtering proxy... - conductor.py:stop_k8s_proxy:110
+2026-03-17 11:39:59 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy stopped - k8s_proxy.py:stop:407
+2026-03-17 11:39:59 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-17 11:39:59 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

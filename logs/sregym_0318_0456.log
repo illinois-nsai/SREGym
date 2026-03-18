@@ -1,0 +1,180 @@
+2026-03-18 04:56:19 - INFO - all.sregym.container_runner - 🐳 Building container image 'sregym-agent-base:latest'... - container_runner.py:build_image:221
+2026-03-18 04:56:22 - INFO - all.sregym.container_runner - ✅ Container image 'sregym-agent-base:latest' built successfully. - container_runner.py:build_image:238
+2026-03-18 04:56:22 - DEBUG - all.sregym.conductor_api - API server is binded to the conductor <sregym.conductor.conductor.Conductor object at 0x7435cacc77a0> - conductor_api.py:run_api:191
+2026-03-18 04:56:22 - DEBUG - all.sregym.conductor_api - API server starting on http://0.0.0.0:8000 - conductor_api.py:run_api:197
+2026-03-18 04:56:22 - DEBUG - all.sregym.conductor_api - API server is running - conductor_api.py:run_api:232
+2026-03-18 04:56:23 - INFO - all.sregym.conductor - Starting Kubernetes API filtering proxy... - conductor.py:start_k8s_proxy:103
+2026-03-18 04:56:23 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy started on port 16443 - k8s_proxy.py:start:397
+2026-03-18 04:56:23 - INFO - all.infra.k8s_proxy - Hidden namespaces: {'chaos-mesh', 'khaos'} - k8s_proxy.py:start:398
+2026-03-18 04:56:23 - INFO - all.infra.k8s_proxy - Hidden labels: {'app': {'load-generator', 'locust-fetcher'}, 'job': {'workload'}, 'opentelemetry.io/name': {'load-generator'}} - k8s_proxy.py:start:399
+2026-03-18 04:56:23 - INFO - all.infra.k8s_proxy - Generated agent kubeconfig at /tmp/sregym-agent-kubeconfig - k8s_proxy.py:generate_agent_kubeconfig:466
+2026-03-18 04:56:23 - INFO - all.sregym.conductor - Agent kubeconfig generated at: /tmp/sregym-agent-kubeconfig - conductor.py:start_k8s_proxy:106
+2026-03-18 04:56:24 - INFO - all.application - Namespace fleetcast not found. Creating namespace. - base.py:create_namespace:73
+2026-03-18 04:56:24 - INFO - all.application - Namespace fleetcast created successfully: namespace/fleetcast created
+ - base.py:create_namespace:76
+2026-03-18 04:56:24 - DEBUG - all.sregym.conductor - Dependency check passed: kubectl, helm - conductor.py:start_problem:389
+2026-03-18 04:56:24 - INFO - all.sregym.conductor - [Session Start] Problem ID: operator_overload_replicas - conductor.py:start_problem:391
+2026-03-18 04:56:24 - INFO - all.sregym.conductor - [STAGE] Start testing on problem: operator_overload_replicas - conductor.py:start_problem:392
+2026-03-18 04:56:24 - INFO - all.sregym.conductor - Fixing Kubernetes... to normal state. - conductor.py:fix_kubernetes:521
+2026-03-18 04:56:24 - INFO - all.sregym.conductor - [FIX] Imbalance leftover if any - conductor.py:fix_kubernetes:522
+2026-03-18 04:56:24 - INFO - all.sregym.conductor - [FIX] KubeletCrash leftover if any - conductor.py:fix_kubernetes:529
+2026-03-18 04:56:27 - INFO - all.sregym.conductor - [FIX] Stale CoreDNS NXDOMAIN templates if any - conductor.py:fix_kubernetes:533
+2026-03-18 04:56:27 - INFO - all.sregym.conductor - [FIX] Leftover dm-flakey infrastructure if any - conductor.py:fix_kubernetes:540
+2026-03-18 04:56:27 - INFO - all.sregym.conductor - Fix Kubernetes completed. - conductor.py:fix_kubernetes:546
+2026-03-18 04:56:27 - INFO - all.sregym.conductor - No tasklist.yml found. Defaulting to running diagnosis and mitigation for this problem. - conductor.py:get_problem_stages:133
+2026-03-18 04:56:27 - INFO - all.sregym.conductor - Undeploying app leftovers... - conductor.py:start_problem:410
+2026-03-18 04:56:27 - INFO - all.infra.helm - Helm Uninstall: fleetcast in namespace fleetcast - helm.py:uninstall:85
+2026-03-18 04:56:27 - WARNING - all.infra.helm - Release fleetcast does not exist. Skipping uninstall. - helm.py:uninstall:88
+2026-03-18 04:56:34 - INFO - all.infra.kubectl - Namespace 'fleetcast' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 04:56:34 - INFO - all.infra.workload - Stop Workload with Locust - locust.py:stop:190
+2026-03-18 04:56:34 - INFO - all.infra.workload - AstronomyShop's built-in load generator is automatically managed. - locust.py:stop:191
+2026-03-18 04:56:34 - INFO - all.infra.workload - Removing locust-fetcher pod if it exists... - locust.py:stop:192
+2026-03-18 04:56:34 - DEBUG - all.infra.workload - Workload stopped - locust.py:stop:194
+2026-03-18 04:56:34 - INFO - all.sregym.conductor - App leftovers undeployed. - conductor.py:start_problem:412
+2026-03-18 04:56:34 - INFO - all.sregym.conductor - Deploying app... - conductor.py:start_problem:413
+2026-03-18 04:56:34 - INFO - all.infra.cluster_state - Baseline state loaded from /home/htl/cache_dir/cluster_baseline_state.json - cluster_state.py:load_baseline_state:153
+2026-03-18 04:56:34 - INFO - all.sregym.conductor - [DEPLOY] Loaded persisted cluster baseline state - conductor.py:deploy_app:558
+2026-03-18 04:56:34 - INFO - all.sregym.conductor - [DEPLOY] Setting up metrics-server… - conductor.py:deploy_app:564
+2026-03-18 04:56:44 - INFO - all.sregym.conductor - [DEPLOY] Setting up OpenEBS… - conductor.py:deploy_app:583
+2026-03-18 04:56:46 - INFO - all.sregym.conductor - [DEPLOY] Deploying Prometheus… - conductor.py:deploy_app:606
+2026-03-18 04:56:47 - WARNING - all.infra.prometheus - Prometheus is already running. Skipping redeployment. - prometheus.py:deploy:71
+2026-03-18 04:56:47 - INFO - all.sregym.conductor - [DEPLOY] Deploying Jaeger… - conductor.py:deploy_app:609
+2026-03-18 04:56:47 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-18 04:56:47 - INFO - all.sregym.conductor - [DEPLOY] Deploying OTel Collector… - conductor.py:deploy_app:612
+2026-03-18 04:56:48 - INFO - all.sregym.otel_collector - OTel Collector deployed successfully. - otel_collector.py:deploy:26
+2026-03-18 04:56:48 - INFO - all.sregym.conductor - [DEPLOY] Deploying Loki… - conductor.py:deploy_app:616
+2026-03-18 04:56:49 - WARNING - all.infra.loki - Loki is already running. Skipping redeployment. - loki.py:deploy:87
+2026-03-18 04:56:49 - WARNING - all.infra.loki - Promtail is already running. Skipping redeployment. - loki.py:_deploy_promtail:170
+2026-03-18 04:56:49 - INFO - all.sregym.conductor - [DEPLOY] Deploying MCP server… - conductor.py:deploy_app:621
+2026-03-18 04:56:50 - DEBUG - all.sregym.mcp_server - Port 9954 is already in use. Attempt 1 of 3. Retrying in 3 seconds... - mcp_server.py:start_port_forward:45
+2026-03-18 04:56:56 - INFO - all.sregym.mcp_server - Port forwarding established at 9954. MCP_SERVER_PORT set. - mcp_server.py:start_port_forward:63
+2026-03-18 04:56:56 - INFO - all.sregym.mcp_server - MCP server deployed successfully. - mcp_server.py:deploy:26
+2026-03-18 04:56:56 - INFO - all.sregym.conductor - [ENV] Set up necessary components: metrics-server, Khaos, OpenEBS, Prometheus, Jaeger, Loki - conductor.py:deploy_app:624
+2026-03-18 04:56:56 - INFO - all.sregym.conductor - [DEPLOY] Deploying and starting workload - conductor.py:deploy_app:636
+2026-03-18 04:56:56 - INFO - all.infra.kubectl - Namespace 'fleetcast' not found. Creating namespace. - kubectl.py:create_namespace_if_not_exist:503
+2026-03-18 04:56:56 - INFO - all.infra.kubectl - Namespace 'fleetcast' created successfully. - kubectl.py:create_namespace_if_not_exist:506
+2026-03-18 04:56:56 - INFO - all.infra.helm - Helm Repo Add: ingress-nginx with url https://kubernetes.github.io/ingress-nginx - helm.py:add_repo:223
+2026-03-18 04:56:56 - INFO - all.infra.helm - Helm repo ingress-nginx added successfully: "ingress-nginx" already exists with the same configuration, skipping - helm.py:add_repo:236
+2026-03-18 04:56:56 - INFO - all.infra.helm - Helm Repo Update with retry logic - helm.py:repo_update:270
+2026-03-18 04:56:58 - INFO - all.infra.helm - Helm repo update successful on attempt 1 - helm.py:repo_update:278
+2026-03-18 04:56:58 - DEBUG - all.infra.helm - Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "ingress-nginx" chart repository
+...Successfully got an update from the "chaos-mesh" chart repository
+...Successfully got an update from the "fleetcast" chart repository
+...Successfully got an update from the "grafana" chart repository
+...Successfully got an update from the "pingcap" chart repository
+Update Complete. ⎈Happy Helming!⎈
+ - helm.py:repo_update:279
+2026-03-18 04:57:37 - INFO - all.infra.helm - Helm Repo Add: pingcap with url https://charts.pingcap.org - helm.py:add_repo:223
+2026-03-18 04:57:37 - INFO - all.infra.helm - Helm repo pingcap added successfully: "pingcap" already exists with the same configuration, skipping - helm.py:add_repo:236
+2026-03-18 04:57:37 - INFO - all.infra.helm - Helm Repo Update with retry logic - helm.py:repo_update:270
+2026-03-18 04:57:39 - INFO - all.infra.helm - Helm repo update successful on attempt 1 - helm.py:repo_update:278
+2026-03-18 04:57:39 - DEBUG - all.infra.helm - Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "fleetcast" chart repository
+...Successfully got an update from the "chaos-mesh" chart repository
+...Successfully got an update from the "ingress-nginx" chart repository
+...Successfully got an update from the "grafana" chart repository
+...Successfully got an update from the "pingcap" chart repository
+Update Complete. ⎈Happy Helming!⎈
+ - helm.py:repo_update:279
+2026-03-18 05:03:12 - INFO - all.infra.helm - Helm Repo Add: fleetcast with url https://yimingsu01.github.io/FleetCast - helm.py:add_repo:223
+2026-03-18 05:03:12 - INFO - all.infra.helm - Helm repo fleetcast added successfully:  - helm.py:add_repo:236
+2026-03-18 05:03:12 - INFO - all.infra.helm - Helm Install: fleetcast in namespace fleetcast - helm.py:install:35
+2026-03-18 05:03:14 - DEBUG - all.infra.helm - NAME: fleetcast
+LAST DEPLOYED: Wed Mar 18 05:03:12 2026
+NAMESPACE: fleetcast
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+NOTES:
+1. Get the application URL by running these commands:
+  http://orbital.local/
+  http://orbital.local/api - helm.py:install:72
+2026-03-18 05:04:29 - INFO - all.sregym.jaeger - Jaeger deployed successfully. - jaeger.py:deploy:26
+2026-03-18 05:04:29 - INFO - all.sregym.conductor - [ENV] Deploy application: Fleet Cast - conductor.py:deploy_app:638
+2026-03-18 05:04:30 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger' in namespace 'fleetcast' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 05:04:31 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-agent' in namespace 'fleetcast' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 05:04:31 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-collector' in namespace 'fleetcast' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 05:04:31 - INFO - all.sregym.jaeger - Created ExternalName service 'jaeger-query' in namespace 'fleetcast' -> otel-collector.observe.svc.cluster.local - jaeger.py:create_external_name_service:85
+2026-03-18 05:04:31 - INFO - all.infra.workload - Start Workload with Locust - locust.py:start:183
+2026-03-18 05:04:31 - INFO - all.infra.workload - AstronomyShop has a built-in load generator. - locust.py:start:184
+2026-03-18 05:04:31 - INFO - all.infra.workload - Creating locust-fetcher pod... - locust.py:start:185
+2026-03-18 05:04:42 - DEBUG - all.infra.workload - Workload started - locust.py:start:187
+2026-03-18 05:04:42 - INFO - all.sregym.conductor - [ENV] Start workload - conductor.py:deploy_app:644
+2026-03-18 05:04:42 - INFO - all.sregym.conductor - App deployed. - conductor.py:start_problem:415
+2026-03-18 05:04:42 - INFO - all.infra.kubectl - Namespace 'tidb-cluster' already exists when you want to create. - kubectl.py:create_namespace_if_not_exist:500
+2026-03-18 05:04:44 - INFO - all.sregym.conductor - [ENV] Injected fault - conductor.py:_inject_fault:219
+2026-03-18 05:04:44 - DEBUG - all.sregym.conductor - Advancing to stage 'diagnosis' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-18 05:04:44 - INFO - all.sregym.conductor - [STAGE] Go to stage diagnosis - conductor.py:_advance_to_next_stage:286
+2026-03-18 05:04:44 - INFO - all.sregym.conductor - ✅ Deployment complete. Ready for submission. Current stage is: diagnosis - conductor.py:start_problem:436
+2026-03-18 05:04:44 - INFO - all.sregym.container_runner - Starting containerized agent [stratus-run]: python -m clients.stratus.stratus_agent.driver.driver 2>&1 | tee /logs/driver.lo... - container_runner.py:run_async:195
+2026-03-18 05:04:48 - DEBUG - all.sregym.conductor_api - API returns Problem ID: operator_overload_replicas - conductor_api.py:get_problem:181
+2026-03-18 05:04:48 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.fleet_cast.FleetCast object at 0x7435cae9ef60> - conductor_api.py:get_app:171
+2026-03-18 05:06:59 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit("The frontend service 'fleetcast-satellite-app-frontend' has no endpoints, indicating no pods are assigned to it. This is likely due to a misconfigured service selector or deployment mismatch. Check the service's YAML to ensure the selector matches the pod labels (e.g., 'app: fleetcast-satellite-app-frontend'). Verify the deployment 'fleetcast-satellite-app-frontend' is correctly labeled and exposed via the service.") - parser.py:parse:28
+2026-03-18 05:06:59 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 05:06:59 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 05:06:59 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ["The frontend service 'fleetcast-satellite-app-frontend' has no endpoints, indicating no pods are assigned to it. This is likely due to a misconfigured service selector or deployment mismatch. Check the service's YAML to ensure the selector matches the pod labels (e.g., 'app: fleetcast-satellite-app-frontend'). Verify the deployment 'fleetcast-satellite-app-frontend' is correctly labeled and exposed via the service."], {} - parser.py:parse:34
+2026-03-18 05:06:59 - INFO - all.sregym.conductor - Evaluating stage 'diagnosis' - conductor.py:_submit_evaluate_and_advance:449 [sol = The frontend service 'fleetcast-satellite-app-frontend' has no endpoints, indicating no pods are assigned to it. This is likely due to a misconfigured service selector or deployment mismatch. Check the service's YAML to ensure the selector matches the pod labels (e.g., 'app: fleetcast-satellite-app-frontend'). Verify the deployment 'fleetcast-satellite-app-frontend' is correctly labeled and exposed via the service.]
+2026-03-18 05:06:59 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-18 05:07:00 - INFO - all.sregym.conductor - Start Eval for Diagnosis - conductor.py:_evaluate_diagnosis:235 [sol = The frontend service 'fleetcast-satellite-app-frontend' has no endpoints, indicating no pods are assigned to it. This is likely due to a misconfigured service selector or deployment mismatch. Check the service's YAML to ensure the selector matches the pod labels (e.g., 'app: fleetcast-satellite-app-frontend'). Verify the deployment 'fleetcast-satellite-app-frontend' is correctly labeled and exposed via the service.]
+2026-03-18 05:07:06 - INFO - all.sregym.conductor - [EVAL] Diagnosis Failed
+ TTL: 142.16914105415344 - conductor.py:_evaluate_diagnosis:239
+2026-03-18 05:07:06 - DEBUG - all.sregym.conductor - Advancing to stage 'mitigation' and waiting for agent. - conductor.py:_advance_to_next_stage:283
+2026-03-18 05:07:06 - INFO - all.sregym.conductor - [STAGE] Go to stage mitigation - conductor.py:_advance_to_next_stage:286
+2026-03-18 05:07:06 - INFO - all.sregym.conductor - Restarting noise manager for next stage... - conductor.py:_submit_evaluate_and_advance:470
+2026-03-18 05:07:11 - DEBUG - all.sregym.conductor_api - API returns Current stage: mitigation - conductor_api.py:get_status:161
+2026-03-18 05:07:11 - DEBUG - all.sregym.conductor_api - API returns App instance: <sregym.service.apps.fleet_cast.FleetCast object at 0x7435cae9ef60> - conductor_api.py:get_app:171
+2026-03-18 05:09:16 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit('The service `fleetcast-satellite-app-frontend` is correctly configured with the right selector and endpoints, and the Ingress is properly routing traffic. However, no traffic is reaching the service, likely due to external DNS or Ingress controller issues. Verify domain resolution for `orbital.local` and ensure the Ingress is exposed correctly.') - parser.py:parse:28
+2026-03-18 05:09:16 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 05:09:16 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 05:09:16 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: ['The service `fleetcast-satellite-app-frontend` is correctly configured with the right selector and endpoints, and the Ingress is properly routing traffic. However, no traffic is reaching the service, likely due to external DNS or Ingress controller issues. Verify domain resolution for `orbital.local` and ensure the Ingress is exposed correctly.'], {} - parser.py:parse:34
+2026-03-18 05:09:16 - INFO - all.sregym.conductor - Evaluating stage 'mitigation' - conductor.py:_submit_evaluate_and_advance:449 [sol = The service `fleetcast-satellite-app-frontend` is correctly configured with the right selector and endpoints, and the Ingress is properly routing traffic. However, no traffic is reaching the service, likely due to external DNS or Ingress controller issues. Verify domain resolution for `orbital.local` and ensure the Ingress is exposed correctly.]
+2026-03-18 05:09:16 - INFO - all.sregym.conductor - Stopping noise manager before evaluation... - conductor.py:_submit_evaluate_and_advance:454
+2026-03-18 05:09:16 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit('') - parser.py:parse:28
+2026-03-18 05:09:16 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 05:09:16 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 05:09:16 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: [''], {} - parser.py:parse:34
+2026-03-18 05:09:16 - ERROR - all.sregym.conductor - submit() called when conductor is not waiting for a submission. Current submission_stage=mitigation - conductor.py:submit:503
+2026-03-18 05:09:17 - INFO - all.sregym.conductor - Start Eval for Mitigation - conductor.py:_evaluate_mitigation:250 [sol = The service `fleetcast-satellite-app-frontend` is correctly configured with the right selector and endpoints, and the Ingress is properly routing traffic. However, no traffic is reaching the service, likely due to external DNS or Ingress controller issues. Verify domain resolution for `orbital.local` and ensure the Ingress is exposed correctly.]
+2026-03-18 05:09:17 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit('') - parser.py:parse:28
+2026-03-18 05:09:17 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 05:09:17 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 05:09:17 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: [''], {} - parser.py:parse:34
+2026-03-18 05:09:17 - ERROR - all.sregym.conductor - submit() called when conductor is not waiting for a submission. Current submission_stage=mitigation - conductor.py:submit:503
+2026-03-18 05:09:18 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit('') - parser.py:parse:28
+2026-03-18 05:09:18 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 05:09:18 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 05:09:18 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: [''], {} - parser.py:parse:34
+2026-03-18 05:09:18 - ERROR - all.sregym.conductor - submit() called when conductor is not waiting for a submission. Current submission_stage=mitigation - conductor.py:submit:503
+2026-03-18 05:09:18 - INFO - all.sregym.conductor - [EVAL] Mitigation Failed
+ TTM: 274.50500750541687 - conductor.py:_evaluate_mitigation:254
+2026-03-18 05:09:18 - INFO - all.sregym.conductor - [STAGE] Done, initiating teardown - conductor.py:_finish_problem:348
+2026-03-18 05:09:18 - INFO - all.sregym.conductor - [CLEANUP] Starting cleanup (fault recovery, undeploy, reconcile) - conductor.py:_cleanup_sync:304
+2026-03-18 05:09:18 - INFO - all.sregym.conductor - [STAGE] Teardown initiated, cleanup running in background - conductor.py:_finish_problem:357
+2026-03-18 05:09:18 - INFO - all.sregym.conductor - [CLEANUP] NoiseManager stopped - conductor.py:_cleanup_sync:310
+2026-03-18 05:09:18 - INFO - all.sregym.conductor - [CLEANUP] Recovering fault... - conductor.py:_cleanup_sync:316
+2026-03-18 05:09:19 - DEBUG - all.sregym.conductor - Extracted code block from submit: submit('') - parser.py:parse:28
+2026-03-18 05:09:19 - DEBUG - all.sregym.conductor - Extracted context from submit: [] - parser.py:parse:30
+2026-03-18 05:09:19 - DEBUG - all.sregym.conductor - Parsed API name from submit: submit - parser.py:parse:32
+2026-03-18 05:09:19 - DEBUG - all.sregym.conductor - Parsed args and kwargs from submit: [''], {} - parser.py:parse:34
+2026-03-18 05:09:19 - INFO - all.sregym.conductor - Teardown in progress; returning current results without evaluation. - conductor.py:submit:495
+2026-03-18 05:09:20 - INFO - all.infra.kubectl - Namespace 'tidb-cluster' already exists when you want to create. - kubectl.py:create_namespace_if_not_exist:500
+2026-03-18 05:09:22 - INFO - all.sregym.conductor - [CLEANUP] Fault recovered - conductor.py:_cleanup_sync:318
+2026-03-18 05:09:22 - INFO - all.sregym.conductor - [CLEANUP] Undeploying app... - conductor.py:_cleanup_sync:324
+2026-03-18 05:09:22 - INFO - all.infra.helm - Helm Uninstall: fleetcast in namespace fleetcast - helm.py:uninstall:85
+2026-03-18 05:09:27 - DEBUG - all.infra.helm - release "fleetcast" uninstalled - helm.py:uninstall:108
+2026-03-18 05:10:08 - INFO - all.infra.kubectl - Namespace 'fleetcast' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 05:10:08 - INFO - all.infra.workload - Stop Workload with Locust - locust.py:stop:190
+2026-03-18 05:10:08 - INFO - all.infra.workload - AstronomyShop's built-in load generator is automatically managed. - locust.py:stop:191
+2026-03-18 05:10:08 - INFO - all.infra.workload - Removing locust-fetcher pod if it exists... - locust.py:stop:192
+2026-03-18 05:10:08 - DEBUG - all.infra.workload - Workload stopped - locust.py:stop:194
+2026-03-18 05:10:08 - INFO - all.sregym.conductor - [CLEANUP] App undeployed - conductor.py:_cleanup_sync:326
+2026-03-18 05:10:08 - INFO - all.sregym.conductor - [CLEANUP] Reconciling cluster state to baseline... - conductor.py:_cleanup_sync:330
+2026-03-18 05:10:08 - INFO - all.infra.cluster_state - Reconciling cluster to baseline state... - cluster_state.py:reconcile_to_baseline:168
+2026-03-18 05:10:09 - INFO - all.infra.cluster_state - Deleting unexpected namespace: observe - cluster_state.py:reconcile_to_baseline:187
+2026-03-18 05:11:14 - INFO - all.infra.kubectl - Namespace 'observe' deleted successfully. - kubectl.py:delete_namespace:489
+2026-03-18 05:11:14 - INFO - all.infra.cluster_state - Deleting unexpected namespace: ingress-nginx - cluster_state.py:reconcile_to_baseline:187
+2026-03-18 05:11:20 - INFO - all.sregym.conductor - Stopping Kubernetes API filtering proxy... - conductor.py:stop_k8s_proxy:110
+2026-03-18 05:11:21 - INFO - all.infra.k8s_proxy - Kubernetes API filtering proxy stopped - k8s_proxy.py:stop:407
+2026-03-18 05:11:21 - WARNING - all.sregym.conductor_api - Shutting down API server... - conductor_api.py:request_shutdown:89
+2026-03-18 05:11:21 - DEBUG - all.sregym.conductor_api - API server shutdown event received - conductor_api.py:_watch:226

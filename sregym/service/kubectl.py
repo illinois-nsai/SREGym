@@ -269,7 +269,6 @@ class KubeCtl:
                     pod_list = self.list_pods(namespace)
 
                     if pod_list.items:
-
                         if all(self.is_ready(pod) for pod in pod_list.items):
                             console.log(f"[bold green]All pods in namespace '{namespace}' are stable.")
                             return
@@ -635,7 +634,6 @@ class KubeCtl:
             raise RuntimeError(f"Failed to delete ReplicaSet {name} in {namespace}: {e}")
 
     def apply_resource(self, manifest: dict):
-
         dyn_client = dynamic.DynamicClient(api_client.ApiClient())
 
         gvk = {
