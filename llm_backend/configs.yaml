@@ -119,3 +119,13 @@
 "bedrock-claude-haiku-4-5":
   provider: "litellm"
   model_name: "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+
+"qwen-8b":
+  provider: "litellm"
+  model_name: "openai/Qwen/Qwen3-8B"
+  # Local OpenAI-compatible servers often do not require auth.
+  # Keep api_key unset so no fake key is sent.
+  api_key: null
+  temperature: 0.0
+  top_p: 0.95
+  url: "http://localhost:8080/v1"

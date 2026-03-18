@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import time
+from urllib.parse import urlparse
 from typing import Any
 
 import litellm
@@ -21,6 +22,14 @@ logger = logging.getLogger(__name__)
 
 LLM_QUERY_MAX_RETRIES = int(os.getenv("LLM_QUERY_MAX_RETRIES", "5"))  # Maximum number of retries for rate-limiting
 LLM_QUERY_INIT_RETRY_DELAY = int(os.getenv("LLM_QUERY_INIT_RETRY_DELAY", "1"))  # Initial delay in seconds
+
+
+def _is_local_url(url: str | None) -> bool:
+    if not url:
+        return False
+
+    hostname = urlparse(url).hostname
+    return hostname in {"localhost", "127.0.0.1", "::1"}
 
 
 class LiteLLMBackend:
@@ -89,9 +98,11 @@ class LiteLLMBackend:
             raise ValueError(f"messages must be either a string or a list of dicts, but got {type(messages)}")
 
         if self.provider == "openai":
-            # Some models (o1, o3, gpt-5) don't support top_p and temperature
+            #Some models (o1, o3, gpt-5) don't support top_p and temperature
             model_config = {
                 "model": self.model_name,
+                "api_key": self.api_key,
+                "base_url": self.url,
             }
             # Only add temperature and top_p for models that support them
             # Reasoning models (o1, o3) and newer models (gpt-5) don't support these params
@@ -99,6 +110,7 @@ class LiteLLMBackend:
                 model_config["temperature"] = self.temperature
                 model_config["top_p"] = self.top_p
             llm = ChatOpenAI(**model_config)
+
         elif self.provider == "watsonx":
 
             model_config = {
@@ -129,6 +141,10 @@ class LiteLLMBackend:
                 model_config["top_p"] = self.top_p
             if self.api_key is not None:
                 model_config["api_key"] = self.api_key
+            elif _is_local_url(self.url):
+                # Prevent LiteLLM from falling back to OPENAI_API_KEY for local
+                # OpenAI-compatible servers that do not require authentication.
+                model_config["api_key"] = "local-not-required"
             if self.url is not None:
                 model_config["api_base"] = self.url
             if self.max_tokens is not None:

@@ -169,6 +169,10 @@ class KubeCtl:
         else:
             display_name = f"namespace '{namespace}'"
 
+        if not services and os.getenv("SREGYM_SKIP_NAMESPACE_WAIT", "0") == "1":
+            console.log(f"[bold yellow]Skipping pod readiness wait for {display_name} because skip-cleanup is enabled.")
+            return
+
         console.log(f"[bold yellow]Waiting for all pods in {display_name} to be ready...")
 
         with console.status("[bold green]Waiting for pods to be ready...") as status:

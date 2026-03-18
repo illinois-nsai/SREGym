@@ -35,6 +35,7 @@ class ConductorConfig:
     """Configuration for Conductor deployment options."""
 
     deploy_loki: bool = True
+    skip_cleanup: bool = False
 
 
 class Conductor:
@@ -317,9 +318,12 @@ class Conductor:
             self.logger.info("[CLEANUP] Fault recovered")
 
         # Undeploy app
-        self.logger.info("[CLEANUP] Undeploying app...")
-        self.undeploy_app()
-        self.logger.info("[CLEANUP] App undeployed")
+        if self.config.skip_cleanup:
+            self.logger.info("[CLEANUP] Skipping app undeploy because skip_cleanup is enabled")
+        else:
+            self.logger.info("[CLEANUP] Undeploying app...")
+            self.undeploy_app()
+            self.logger.info("[CLEANUP] App undeployed")
 
         # Reconcile cluster state to baseline
         if self._baseline_captured:
@@ -400,9 +404,12 @@ class Conductor:
         self.get_problem_stages()
         self._build_stage_sequence()
 
-        self.logger.info("Undeploying app leftovers...")
-        self.undeploy_app()  # Cleanup any leftovers
-        self.logger.info("App leftovers undeployed.")
+        if self.config.skip_cleanup:
+            self.logger.info("Skipping app cleanup before deploy because skip_cleanup is enabled")
+        else:
+            self.logger.info("Undeploying app leftovers...")
+            self.undeploy_app()  # Cleanup any leftovers
+            self.logger.info("App leftovers undeployed.")
         self.logger.info("Deploying app...")
         self.deploy_app()
         self.logger.info("App deployed.")

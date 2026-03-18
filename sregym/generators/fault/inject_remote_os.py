@@ -79,7 +79,14 @@ class RemoteOSFaultInjector(FaultInjector):
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(AutoAddPolicy())
         try:
-            ssh.connect(host, username=user)
+            ssh.connect(
+                host,
+                username=user,
+                key_filename=os.path.expanduser("~/.ssh/cloudlab_ed25519"),  # change if needed
+                look_for_keys=True,
+                allow_agent=True,
+                timeout=10,
+            )
             stdin, stdout, stderr = ssh.exec_command(command)
             stdout.channel.recv_exit_status()
             return stdout.read().decode()

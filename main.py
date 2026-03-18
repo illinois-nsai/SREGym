@@ -309,10 +309,14 @@ def main(args):
     os.environ["API_PORT"] = "8000"
     os.environ["MCP_SERVER_PORT"] = "9954"
     os.environ["MCP_SERVER_URL"] = "http://127.0.0.1:9954"
+    os.environ["SREGYM_SKIP_NAMESPACE_WAIT"] = "1" if args.skip_cleanup else "0"
 
     logger.info(f"🔧 Config — agent: {args.agent}, agent_model: {agent_model}, judge_model: {judge_model}")
 
-    conductor_config = ConductorConfig(deploy_loki=not args.use_external_harness)
+    conductor_config = ConductorConfig(
+        deploy_loki=not args.use_external_harness,
+        skip_cleanup=args.skip_cleanup,
+    )
     conductor = Conductor(config=conductor_config)
 
     # Only build/check agent container image if the agent requires it
@@ -450,6 +454,11 @@ if __name__ == "__main__":
         type=str,
         default=None,
         help="Resume from a previous results CSV file. Problems already in the CSV will be skipped.",
+    )
+    parser.add_argument(
+        "--skip-cleanup",
+        action="store_true",
+        help="Skip app undeploy before deploy and after completion, preserving the benchmark namespace/resources.",
     )
     args = parser.parse_args()
 
